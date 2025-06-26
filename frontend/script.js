@@ -554,7 +554,7 @@ function setupLeaderboardPage() {
 
 window.addEventListener("load", async () => {
   try {
-    const response = await fetch("${BASE_URL}/latest-quizzes");
+    const response = await fetch(`${BASE_URL}/latest-quizzes`);
     const quizzes = await response.json();
 
     const section = document.getElementById("latest-quizzes");
