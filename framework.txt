@@ -1,0 +1,37 @@
+QUIZZO/
+│
+├── backend/
+│   ├── main.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── auth.py
+│   ├── credntials.json
+│   ├── google_auth.py
+│   └── routes/
+│       ├── users.py
+│       ├── quizzes.py
+│       ├── questions.py
+│       ├── submissions.py
+│       └── leaderboard.py
+│   
+│
+├── frontend/
+│   ├──resources/
+│   ├── index.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── CreateQuiz.html
+│   ├── JoinQuiz.html
+│   ├── questions.html
+│   ├── quiz.html
+│   ├── result.html
+│   ├── leaderboard.html
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   └── script.js
+├── .gitignore
+│
+│
+└── requirements.txt

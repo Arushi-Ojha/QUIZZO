@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>CREATE QUESTIONS - QUIZZERIA</title>
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fff9f7;
+      color: #00332f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .custom-heading {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.8rem;
+  color: #e91e63;
+  margin-bottom: 2rem; /* matches mb-8 in Tailwind */
+  text-shadow: 1.5px 1.5px 4px rgba(0, 77, 64, 0.8);
+  -webkit-user-select: none;
+  user-select: none;
+}
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body class="flex flex-col items-center min-h-screen px-4 pt-8 pb-12 bg-[#fff9f7] text-[#00332f] select-none">
+  <img
+    id="form"
+    loading="lazy"
+    alt="QUIZZERIA logo in pink and teal minimalist doodle style"
+    src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg"
+    class="w-28 h-28 object-contain mb-6 rounded-xl drop-shadow-[0_2px_3px_rgba(233,30,99,0.4)] select-none"
+  />
+  <h2 class="custom-heading">
+    Create Questions
+  </h2>
+  <form
+    id="create-question"
+    autocomplete="off"
+    novalidate
+    class="bg-[#a7f3d0] max-w-md w-full rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-10 flex flex-col gap-6"
+  >
+    <label for="question" class="font-semibold text-lg text-[#004d40] select-text">Question:</label>
+    <input
+      id="question"
+      name="question"
+      type="text"
+      placeholder="Enter your question"
+      required
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+    />
+
+    <label for="op1" class="font-semibold text-lg text-[#004d40] select-text">Option A:</label>
+    <input
+      id="op1"
+      name="op1"
+      type="text"
+      placeholder="Option A"
+      required
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+    />
+
+    <label for="op2" class="font-semibold text-lg text-[#004d40] select-text">Option B:</label>
+    <input
+      id="op2"
+      name="op2"
+      type="text"
+      placeholder="Option B"
+      required
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+    />
+
+    <label for="op3" class="font-semibold text-lg text-[#004d40] select-text">Option C:</label>
+    <input
+      id="op3"
+      name="op3"
+      type="text"
+      placeholder="Option C"
+      required
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+    />
+
+    <label for="op4" class="font-semibold text-lg text-[#004d40] select-text">Option D:</label>
+    <input
+      id="op4"
+      name="op4"
+      type="text"
+      placeholder="Option D"
+      required
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+    />
+
+    <label for="co_op" class="font-semibold text-lg text-[#004d40] select-text">Correct Option:</label>
+    <input
+      id="co_op"
+      name="correctOption"
+      type="text"
+      placeholder="Correct Option (A, B, C, or D)"
+      required
+      maxlength="1"
+      pattern="[ABCDabcd]"
+      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      title="Enter A, B, C, or D"
+    />
+
+    <button
+      id="Create-Question"
+      type="submit"
+      class="bg-[#e91e63] text-[#fff9f7] font-pacifico font-bold text-xl py-4 rounded-2xl shadow-[0_10px_22px_rgba(233,30,99,0.7)] transition-colors transition-shadow tracking-widest text-shadow-[0_0_3px_rgba(0,0,0,0.53)] cursor-pointer select-none hover:bg-[#b00045] hover:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:bg-[#b00045] focus:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:outline-none"
+    >
+      CREATE A NEW QUESTION +
+    </button>
+  </form>
+
+  <div
+    id="Questions-list"
+    class="max-w-md w-full mt-10 bg-[#a7f3d0] rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-6 text-[#00332f] font-poppins select-text min-h-[100px] space-y-4"
+  >
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

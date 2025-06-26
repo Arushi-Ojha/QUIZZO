@@ -1,0 +1,219 @@
+<html lang="en">
+ <head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Log In - QUIZZERIA
+  </title>
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #fff9f7;
+      color: #00332f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem 3rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    #form {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      -webkit-user-select: none;
+      user-select: none;
+      filter: drop-shadow(0 2px 3px rgba(233,30,99,0.4));
+      border-radius: 1rem;
+    }
+    h2 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.8rem;
+      color: #e91e63;
+      margin-bottom: 2rem;
+      text-shadow: 1.5px 1.5px 4px #004d40cc;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    form {
+      background: #a7f3d0;
+      padding: 2.5rem 3rem;
+      border-radius: 2rem;
+      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #004d40;
+      -webkit-user-select: none;
+      user-select: text;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      border: 2.5px solid #e91e63;
+      border-radius: 1rem;
+      outline-offset: 2px;
+      transition: border-color 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      color: #00332f;
+      -webkit-user-select: none;
+      user-select: text;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #b00045;
+      box-shadow: 0 0 8px rgb(176 0 69 / 0.6);
+      outline: none;
+    }
+    button[type="submit"] {
+      background: #e91e63;
+      color: #fff9f7;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgb(233 30 99 / 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: "Pacifico", cursive;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 3px #00000088;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background: #b00045;
+      box-shadow: 0 14px 28px rgb(176 0 69 / 0.85);
+      outline: none;
+      color: #fff9f7;
+    }
+    p {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      color: #004d40dd;
+      text-align: center;
+      -webkit-user-select: none;
+      user-select: text;
+    }
+    p a {
+      color: #e91e63;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    p a:hover,
+    p a:focus {
+      color: #b00045;
+      outline: none;
+      text-decoration: underline;
+    }
+    #google-login {
+      margin-top: 2.5rem;
+      background: #00aaff;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 0.9rem 1.5rem;
+      border: none;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgb(0 170 255 / 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      -webkit-user-select: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      max-width: 400px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #google-login:hover,
+    #google-login:focus {
+      background: #0077aa;
+      box-shadow: 0 12px 28px rgb(0 119 170 / 0.85);
+      outline: none;
+    }
+    #google-login::before {
+      content: "";
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
+    }
+    @media (max-width: 480px) {
+      #form {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+      form {
+        padding: 2rem 2rem;
+      }
+      button[type="submit"] {
+        font-size: 1.15rem;
+        padding: 0.85rem 0;
+      }
+      #google-login {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <img alt="QUIZZERIA logo in pink and teal minimalist doodle style" id="form" loading="lazy" src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg"/>
+  <h2>
+   WELCOME BACK!
+  </h2>
+  <form id="login-form" autocomplete="off" novalidate>
+   <label for="login-username">
+    Username:
+   </label>
+   <input autocomplete="username" id="login-username" name="username" required="" type="text"/>
+   <label for="login-password">
+    Password:
+   </label>
+   <input autocomplete="current-password" id="login-password" name="password" required="" type="password"/>
+   <button type="submit">
+    Login
+   </button>
+  </form>
+  <p>
+   Don't have an account? <a href="signup.html">Signup here</a>
+  </p>
+  <button id="google-login" type="button" aria-label="Login with Google">
+   Login with Google
+  </button>
+ </body>
+</html>

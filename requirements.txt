@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+mysql-connector-python
+pydantic
+passlib[bcrypt]
+python-multipart
+email-validator
+google-auth
+google-auth-oauthlib
+python-dotenv
+starlette
+itsdangerous

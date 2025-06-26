@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   QUIZZERIA
+  </title>
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #fff9f7;
+      color: #00332f;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    header {
+      background: #e91e63;
+      color: #00332f;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 12px rgb(233 30 99 / 0.6);
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: "Pacifico", cursive;
+      color: #fff;
+      text-shadow: 1px 1px 3px #00000088;
+    }
+    header h1 span {
+      font-size: 2.4rem;
+    }
+    nav {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.6rem 1.3rem;
+      border-radius: 0.75rem;
+      background: #004d40;
+      box-shadow: 0 4px 8px rgb(0 77 64 / 0.5);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: "Poppins", sans-serif;
+    }
+    nav a:hover,
+    nav a:focus {
+      background: #00251a;
+      outline: none;
+      box-shadow: 0 6px 14px rgb(0 77 64 / 0.8);
+    }
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.8rem;
+      max-width: 700px;
+      width: 100%;
+      background: #a7f3d0;
+      border-radius: 1.8rem;
+      padding: 2.5rem 2.5rem 3.5rem;
+      box-shadow: 0 12px 30px rgb(0 77 64 / 0.3);
+      -webkit-user-select: none;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image-container {
+      width: 100%;
+      max-width: 600px;
+      height: 280px;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      box-shadow: 0 12px 25px rgb(233 30 99 / 0.35);
+      margin-bottom: 1.8rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .hero-image-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      -webkit-user-select: none;
+      user-select: none;
+      display: block;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #e91e63;
+      margin: 0;
+      line-height: 1.1;
+      font-family: "Pacifico", cursive;
+      text-shadow: 1.5px 1.5px 4px #004d40cc;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+    }
+    .hero h2.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #00332fdd;
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+    }
+    .hero p.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .btn-primary {
+      background: #e91e63;
+      color: #fff9f7;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgb(233 30 99 / 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-user-select: none;
+      user-select: none;
+      font-family: "Pacifico", cursive;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 3px #00000088;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s;
+    }
+    .btn-primary.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    section.features {
+      margin-top: 5rem;
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .feature-card {
+      background: #fff0f5;
+      border: 3px solid #e91e63;
+      border-radius: 1.8rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 10px 28px rgb(233 30 99 / 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      font-weight: 600;
+      color: #00332f;
+      min-height: 360px;
+    }
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgb(233 30 99 / 0.4);
+      border-color: #b00045;
+    }
+    .feature-icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 1.5rem;
+      -webkit-user-select: none;
+      user-select: none;
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    }
+    .feature-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #e91e63;
+      font-family: "Pacifico", cursive;
+      text-shadow: 1px 1px 3px #004d40aa;
+    }
+    .feature-desc {
+      font-size: 1.15rem;
+      color: #00332fdd;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    section.about {
+      margin-top: 6rem;
+      max-width: 720px;
+      background: #a7f3d0;
+      border-radius: 1.8rem;
+      padding: 3.5rem 3rem;
+      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
+      color: #00332f;
+      font-weight: 600;
+      line-height: 1.75;
+      -webkit-user-select: none;
+      user-select: none;
+      text-align: center;
+    }
+    section.about h2 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.8rem;
+      color: #e91e63;
+      margin-bottom: 1.2rem;
+      text-shadow: 1.5px 1.5px 4px #004d40cc;
+    }
+    section.about p {
+      font-size: 1.25rem;
+      margin-bottom: 1.8rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    section.learn-more {
+      margin-top: 5rem;
+      max-width: 900px;
+      background: #fff0f5;
+      border-radius: 1.8rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 12px 32px rgb(233 30 99 / 0.25);
+      color: #00332f;
+      font-weight: 600;
+      line-height: 1.7;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    section.learn-more h3 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.2rem;
+      color: #e91e63;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 1px 1px 3px #004d40aa;
+    }
+    section.learn-more ul {
+      list-style: none;
+      padding-left: 0;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: #00332fdd;
+    }
+    section.learn-more ul li {
+      margin-bottom: 1rem;
+      padding-left: 2.5rem;
+      position: relative;
+      font-weight: 500;
+    }
+    section.learn-more ul li::before {
+      content: "🎨";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.5rem;
+      line-height: 1;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    footer {
+      background: #004d40;
+      color: #fff9f7;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      -webkit-user-select: none;
+      user-select: none;
+      box-shadow: 0 -6px 14px rgb(0 77 64 / 0.7);
+    }
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      nav {
+        font-size: 0.95rem;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .btn-primary {
+        font-size: 1.15rem;
+        padding: 0.85rem 2.5rem;
+      }
+      section.features {
+        grid-template-columns: 1fr;
+      }
+      section.learn-more ul {
+        max-width: 100%;
+      }
+      section.about {
+        padding: 2.5rem 1.8rem;
+      }
+      section.learn-more {
+        padding: 2.5rem 1.8rem;
+      }
+      .hero-image-container {
+        height: 200px;
+      }
+    }
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fff9f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    /* Unique loader: rotating double ring with bouncing dots */
+    .loader-ring {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border: 6px solid #e91e63;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+      box-shadow: 0 0 15px #e91e63aa;
+    }
+
+    .loader-ring::before,
+    .loader-ring::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 6px solid #004d40;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      width: 60px;
+      height: 60px;
+      top: 8px;
+      left: 8px;
+      animation: spinReverse 1.5s linear infinite;
+      box-shadow: 0 0 10px #004d40aa;
+    }
+
+    .loader-ring::after {
+      width: 40px;
+      height: 40px;
+      top: 20px;
+      left: 20px;
+      border-color: #ff66b2 transparent transparent transparent;
+      animation-duration: 1s;
+      box-shadow: 0 0 8px #ff66b2aa;
+    }
+
+    /* Bouncing dots inside the ring */
+    .loader-dots {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .loader-dot {
+      width: 14px;
+      height: 14px;
+      background: #e91e63;
+      border-radius: 50%;
+      animation: bounce 1.2s ease-in-out infinite;
+      box-shadow: 0 0 6px #e91e63cc;
+    }
+
+    .loader-dot:nth-child(2) {
+      background: #004d40;
+      animation-delay: 0.2s;
+      box-shadow: 0 0 6px #004d40cc;
+    }
+
+    .loader-dot:nth-child(3) {
+      background: #ff66b2;
+      animation-delay: 0.4s;
+      box-shadow: 0 0 6px #ff66b2cc;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinReverse {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-15px);
+        opacity: 0.6;
+      }
+    }
+  </style>
+ </head>
+ <body>
+    <div id="loader" aria-label="Loading content" role="alert" aria-busy="true">
+    <div class="loader-ring" aria-hidden="true">
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show loader on page start (already visible by default)
+    // Hide loader when page fully loaded
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.style.opacity = "0";
+        loader.style.transition = "opacity 0.5s ease";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 500);
+      }
+    });
+  </script>
+  <header>
+   <h1>
+    <span>
+     🎀
+    </span>
+    QUIZZERIA
+    <span>
+     🎀
+    </span>
+   </h1>
+   <nav>
+    <a href="#features" tabindex="0">
+     Features
+    </a>
+    <a href="#about" tabindex="0">
+     About
+    </a>
+    <a href="login.html" tabindex="0">
+     Login
+    </a>
+    <a href="signup.html" tabindex="0">
+     Register
+    </a>
+   </nav>
+  </header>
+  <main>
+   <section aria-label="Main introduction to Quizzaria" class="hero">
+    <div class="hero-image-container" id="heroImageContainer">
+     <img alt="Minimalist cartoon doodle style quiz scene with smiling characters, question marks, and colorful quiz elements in pink, teal, and cream" height="280" loading="lazy" src="https://img.freepik.com/premium-photo/library-dreams-unveiled-anime-cartoon-bookworm-s-fantasy_802234-13330.jpg" width="600"/>
+    </div>
+    <h2 id="heroTitle">
+     Welcome to QUIZZERIA
+    </h2>
+    <p id="heroText">
+     The ultimate platform to challenge your knowledge, learn new things, and compete with friends. Join thousands of quiz enthusiasts and sharpen your mind today!
+    </p>
+    <button class="btn-primary" id="getStartedBtn" onclick="window.location.href='login.html'">
+     Get Started
+    </button>
+   </section>
+   <section aria-label="Features of Quizzaria" class="features" id="features">
+    <article class="feature-card" tabindex="0">
+     <img alt="Minimalist cartoon open book with stars doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg" width="96"/>
+     <h3 class="feature-title">
+      Diverse Quiz Topics
+     </h3>
+     <p class="feature-desc">
+      Explore quizzes on literature, history, science, pop culture, and more — all in a fun, doodle-inspired style.
+     </p>
+    </article>
+    <article class="feature-card" tabindex="0">
+     <img alt="Minimalist cartoon trophy with stars doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/51b94d3a-b6f5-4faa-e35a-2f88d4e27ea7.jpg" width="96"/>
+     <h3 class="feature-title">
+      Competitive Leaderboards
+     </h3>
+     <p class="feature-desc">
+      Compete with players worldwide and climb the ranks to become a quiz champion with colorful badges and rewards.
+     </p>
+    </article>
+    <article class="feature-card" tabindex="0">
+     <img alt="Minimalist cartoon smartphone with quiz app doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/b9949ece-2a7c-4128-d16a-35d2f63e3e07.jpg" width="96"/>
+     <h3 class="feature-title">
+      Mobile Friendly
+     </h3>
+     <p class="feature-desc">
+      Enjoy a seamless experience on any device, whether on your phone, tablet, or desktop — all with a playful, doodle vibe.
+     </p>
+    </article>
+    <article class="feature-card" tabindex="0">
+     <img alt="Minimalist cartoon lock with heart doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/8b1a7573-1eb0-4373-ea52-5df01c01717e.jpg" width="96"/>
+     <h3 class="feature-title">
+      Secure &amp; Private
+     </h3>
+     <p class="feature-desc">
+      Your data is safe with us. We prioritize your privacy and security with a friendly, trustworthy approach.
+     </p>
+    </article>
+   </section>
+   <section aria-label="About QUIZZERIA" class="about" id="about">
+    <h2>
+     About QUIZZERIA
+    </h2>
+    <p>
+     QUIZZERIA was created by a passionate team of educators and developers who believe that learning should be fun, engaging, and accessible to everyone. Our platform offers a rich collection of quizzes designed to challenge your intellect and help you grow your knowledge every day.
+    </p>
+    <p>
+     We combine playful cartoonish doodle designs with serious learning to make your quiz experience delightful and memorable. Whether you're a casual learner or a competitive quizzer, QUIZZERIA has something special for you!
+    </p>
+   </section>
+   <section aria-label="Learn more about QUIZZERIA" class="learn-more">
+    <h3>
+     Why Choose QUIZZERIA?
+    </h3>
+    <ul>
+     <li>
+      Engaging quizzes designed with colorful, minimalist doodle art to keep you motivated.
+     </li>
+     <li>
+      Regularly updated content to keep your knowledge fresh and exciting.
+     </li>
+     <li>
+      Intuitive and responsive design for smooth experience on all devices.
+     </li>
+     <li>
+      Safe and secure platform with privacy-first approach.
+     </li>
+     <li>
+      Community-driven challenges and events to connect with fellow quiz lovers.
+     </li>
+    </ul>
+   </section>
+  </main>
+  <footer>
+   © 2024 QUIZZERIA. All rights reserved. Made with 🎀 by the QUIZZERIA Team.
+  </footer>
+  <script>
+   window.addEventListener("load", () => {
+     const heroImage = document.getElementById("heroImageContainer");
+     const heroTitle = document.getElementById("heroTitle");
+     const heroText = document.getElementById("heroText");
+     const getStartedBtn = document.getElementById("getStartedBtn");
+
+     // Animate hero image container
+     setTimeout(() => {
+       heroImage.classList.add("visible");
+     }, 200);
+
+     // Animate hero title
+     setTimeout(() => {
+       heroTitle.classList.add("visible");
+     }, 600);
+
+     // Animate hero paragraph
+     setTimeout(() => {
+       heroText.classList.add("visible");
+     }, 900);
+
+     // Animate button
+     setTimeout(() => {
+       getStartedBtn.classList.add("visible");
+     }, 1200);
+   });
+  </script>
+  <script src="script.js"></script>
+ </body>
+</html>
