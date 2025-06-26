@@ -138,6 +138,7 @@ function setupCreateQuizPage() {
     if (!form || !quizzesList) return;
     if (!username) {
         alert("Please log in first.");
+        window.location.href = "login.html";
         return;
     }
     fetch(`${BASE_URL}/quizzes/user/${username}`)
