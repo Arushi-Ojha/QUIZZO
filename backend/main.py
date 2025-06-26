@@ -15,6 +15,7 @@ from routes.leaderboard import router as leaderboard_router
 from routes import submissions
 from routes import questions
 from routes import submissions
+from routes import publicQuizzes
 from google_auth import router as google_auth_router
 
 app = FastAPI()
@@ -51,6 +52,7 @@ app.include_router(questions.router)
 app.include_router(submissions.router)
 app.include_router(leaderboard_router)
 app.include_router(quizzes.router)
+app.include_router(publicQuizzes.router)
 
 
 def get_db():
