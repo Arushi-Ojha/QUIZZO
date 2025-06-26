@@ -581,7 +581,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCreateQuizPage();
     setupQuestionEditor();
     setupJoinQuizPage();
-    setupQuizPage();
+    if (window.location.pathname.endsWith("CreateQuiz.html")) {
+        setupCreateQuizPage();
+    }
     setupLeaderboardPage();
     if (window.location.pathname.endsWith("result.html")) loadResult();
 });
