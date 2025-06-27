@@ -341,14 +341,14 @@ function startQuiz() {
         alert("Please enter a Quiz ID");
         return;
     }
-    sessionStorage.setItem("quiz_id", quizId);
+    localStorage.setItem("quiz_id", quizId);
     window.location.href = `quiz.html?quiz_id=${quizId}`;
 }
 
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
 
-    let quizId = sessionStorage.getItem("quiz_id");
+    let quizId = localStorage.getItem("quiz_id");
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
