@@ -633,12 +633,13 @@ async function displayLatestQuizzes() {
       });
     });
 
-    document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
   } catch (error) {
     console.error("Error fetching latest quizzes:", error);
   }
 }
+
+    document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
 
 
