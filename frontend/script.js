@@ -337,7 +337,6 @@ async function fetchQuizDetails() {
 
 function startQuiz() {
      const quizId = document.getElementById("quiz-id-input").value;
-    
     localStorage.setItem("quiz_id", quizId);
     window.location.href = "quiz.html";
 }
