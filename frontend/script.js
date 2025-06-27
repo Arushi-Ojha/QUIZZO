@@ -337,7 +337,7 @@ async function fetchQuizDetails() {
 
 function startQuiz() {
     const quizId = sessionStorage.getItem("quizId");
-    window.location.href = `quiz.html?quizId=${quizId}`;
+    window.location.href = `JoinQuiz.html?quizId=${quizId}`;
 }
 
 async function setupQuizPage() {
