@@ -328,7 +328,7 @@ async function fetchQuizDetails() {
         document.getElementById("quiz-title").textContent = `Title: ${quiz.title}`;
         document.getElementById("quiz-desc").textContent = `Description: ${quiz.description}`;
         document.getElementById("quiz-time").textContent = `Time Limit: ${quiz.time_limit} minutes`;
-        sessionStorage.setItem("quizId", quizId);
+        sessionStorage.setItem("quiz_id", quizId);
     } catch (error) {
         console.error("Error fetching quiz:", error);
         alert("Server error");
@@ -336,18 +336,18 @@ async function fetchQuizDetails() {
 }
 
 function startQuiz() {
-    const quizId = sessionStorage.getItem("quizId");
-    window.location.href = `quiz.html?quizId=${quizId}`;
+    const quizId = sessionStorage.getItem("quiz_id");
+    window.location.href = `quiz.html?quiz_id=${quizId}`;
 }
 
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
 
-    const quizId = sessionStorage.getItem("quizId") || localStorage.getItem("quizId");
+    const quizId = sessionStorage.getItem("quiz_id") || localStorage.getItem("quiz_id");
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
-        localStorage.setItem("quizId", quizId);  // Sync to avoid issues
+        localStorage.setItem("quiz_id", quizId);  // Sync to avoid issues
     }
 
     if (!quizId || !user_id) {
@@ -355,7 +355,7 @@ async function setupQuizPage() {
         return;
     }
 
-    console.log("Using quizId:", quizId); // Optional debug
+    console.log("Using quiz_id:", quizId); // Optional debug
 
     try {
         const checkRes = await fetch(`${BASE_URL}/results/${user_id}/${quizId}`);
