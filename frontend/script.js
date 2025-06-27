@@ -403,9 +403,22 @@ async function setupQuizPage() {
     history.pushState(null, null, location.href);
     window.onpopstate = () => history.go(1);
     try {
-        const res = await fetch(`${BASE_URL}/questions/quiz/${quizId}`);
-        questions = await res.json();
-        totalQuestions = questions.length;
+        try {
+    const res = await fetch(`${BASE_URL}/questions/quiz/${quizId}`);
+    if (!res.ok) {
+        console.error("Failed to fetch questions. Status:", res.status);
+        alert("Could not load questions: " + res.status);
+        return;
+    }
+    questions = await res.json();
+    console.log("Fetched questions:", questions);
+    totalQuestions = questions.length;
+} catch (err) {
+    console.error("Error loading questions:", err);
+    alert("Error loading quiz questions.");
+    return;
+}
+
     } catch (err) {
         alert("Error loading quiz questions.");
         return;
