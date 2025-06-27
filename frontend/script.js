@@ -70,15 +70,7 @@ function setupLoginForm() {
             alert(`Login failed: ${data.detail}`);
         }
     });
-    document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const redirect = params.get("redirect");
-
-    const username = localStorage.getItem("username");
-    if (redirect === "quiz" && username) {
-      window.location.href = "quiz.html";
-    }
-  });
+    
 }
 
 function setupGoogleLogin() {
@@ -603,6 +595,7 @@ async function displayLatestQuizzes() {
       const quizDiv = document.createElement("div");
       quizDiv.classList.add("quiz-card");
       quizDiv.innerHTML = `
+        <h3>${quiz.id}<h3>
         <h3>${quiz.title}</h3>
         <p>${quiz.description}</p>
         <p><strong>Time Limit:</strong> ${quiz.time_limit} minutes</p>
