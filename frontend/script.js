@@ -70,6 +70,15 @@ function setupLoginForm() {
             alert(`Login failed: ${data.detail}`);
         }
     });
+    document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
+
+    const username = localStorage.getItem("username");
+    if (redirect === "quiz" && username) {
+      window.location.href = "quiz.html";
+    }
+  });
 }
 
 function setupGoogleLogin() {
