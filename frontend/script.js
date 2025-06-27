@@ -342,7 +342,7 @@ function startQuiz() {
 
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
-    const quizId = localStorage.getItem("quiz_id");
+    const quizId = localStorage.getItem("quiz_id")|| sessionStorage.getItem("quizId");
     const user_id = localStorage.getItem("user_id");
     if (!quizId || !user_id) {
         alert("Quiz ID or user ID missing!");
