@@ -479,8 +479,7 @@
   </div>
 
   <script>
-    // Show loader on page start (already visible by default)
-    // Hide loader when page fully loaded
+    localStorage.clear();
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       if (loader) {
