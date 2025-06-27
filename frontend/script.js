@@ -342,12 +342,21 @@ function startQuiz() {
 
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
-    const quizId = localStorage.getItem("quiz_id")|| sessionStorage.getItem("quizId");
+
+    const quizId = sessionStorage.getItem("quizId") || localStorage.getItem("quiz_id");
     const user_id = localStorage.getItem("user_id");
+
+    if (quizId) {
+        localStorage.setItem("quiz_id", quizId);  // Sync to avoid issues
+    }
+
     if (!quizId || !user_id) {
         alert("Quiz ID or user ID missing!");
         return;
     }
+
+    console.log("Using quizId:", quizId); // Optional debug
+
     try {
         const checkRes = await fetch(`${BASE_URL}/results/${user_id}/${quizId}`);
         if (checkRes.ok) {
