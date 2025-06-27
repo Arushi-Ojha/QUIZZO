@@ -1,353 +1,252 @@
 <html lang="en">
  <head>
-  <meta charset="UTF-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Log In - QUIZZERIA
-  </title>
-  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Log In - QUIZZERIA</title>
+  <link rel="icon" href="resources/favicoon-removebg-preview.png" type="image/x-icon" />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Roboto&amp;family=Roboto+Mono&amp;display=swap"
+   rel="stylesheet"
+  />
   <style>
-   * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #fff9f7;
-      color: #00332f;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem 1rem 3rem;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    #form {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      margin-bottom: 1.5rem;
-      -webkit-user-select: none;
-      user-select: none;
-      filter: drop-shadow(0 2px 3px rgba(233,30,99,0.4));
-      border-radius: 1rem;
+   :root {
+    --color-darkest: #003135;
+    --color-dark: #024950;
+    --color-primary: #0fa4af;
+    --color-light: #afdde5;
+   }
+
+   body {
+    margin: 0;
+    font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-darkest);
+    color: var(--color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 3rem 1rem 4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    user-select: none;
+   }
+
+   #form-logo {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 8px var(--color-primary));
+    border-radius: 0.5rem;
+    -webkit-user-select: none;;
+    user-select: none;
+   }
+
+   h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 8px var(--color-primary);
+    -webkit-user-select: none;;
+    user-select: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+   }
+
+   form {
+    background-color: var(--color-dark);
+    border: 1.5px solid var(--color-primary);
+    border-radius: 1rem;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 6px 20px var(--color-primary);
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+   }
+
+   label {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--color-primary);
+    -webkit-user-select: none;;
+    user-select: text;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+   }
+
+   input[type="text"],
+   input[type="password"] {
+    padding: 0.85rem 1.25rem;
+    font-size: 1.125rem;
+    border: 2.5px solid var(--color-primary);
+    border-radius: 0.75rem;
+    outline-offset: 3px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: "Roboto", sans-serif;
+    color: var(--color-light);
+    background-color: var(--color-darkest);
+    -webkit-user-select: none;;
+    user-select: text;
+   }
+
+   input[type="text"]::placeholder,
+   input[type="password"]::placeholder {
+    color: var(--color-light);
+    opacity: 0.6;
+   }
+
+   input[type="text"]:focus,
+   input[type="password"]:focus {
+    border-color: var(--color-light);
+    box-shadow: 0 0 10px var(--color-primary);
+    outline: none;
+    background-color: var(--color-dark);
+   }
+
+   button[type="submit"] {
+    background-color: transparent;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    border: 2.5px solid var(--color-primary);
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+     color 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    -webkit-user-select: none;;
+    user-select: none;
+    text-shadow: none;
+   }
+
+   button[type="submit"]:hover,
+   button[type="submit"]:focus {
+    background-color: var(--color-primary);
+    color: var(--color-darkest);
+    box-shadow: 0 0 16px var(--color-primary);
+    outline: none;
+   }
+
+   p {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--color-light);
+    opacity: 0.8;
+    text-align: center;
+    -webkit-user-select: none;;
+    user-select: text;
+    font-family: "Roboto", sans-serif;
+   }
+
+   p a {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+   }
+
+   p a:hover,
+   p a:focus {
+    color: var(--color-light);
+    outline: none;
+    text-decoration: underline;
+   }
+
+   #google-login {
+    margin-top: 3rem;
+    background-color: var(--color-primary);
+    color: var(--color-darkest);
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px var(--color-primary);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+     color 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    -webkit-user-select: none;;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 420px;
+    width: 100%;
+   }
+
+   #google-login:hover,
+   #google-login:focus {
+    background-color: var(--color-light);
+    color: var(--color-darkest);
+    box-shadow: 0 10px 30px var(--color-light);
+    outline: none;
+   }
+
+   #google-login::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.15));
+   }
+
+   @media (max-width: 480px) {
+    #form-logo {
+     width: 110px;
+     height: 110px;
+     margin-bottom: 1.5rem;
     }
     h2 {
-      font-family: "Pacifico", cursive;
-      font-size: 2.8rem;
-      color: #e91e63;
-      margin-bottom: 2rem;
-      text-shadow: 1.5px 1.5px 4px #004d40cc;
-      -webkit-user-select: none;
-      user-select: none;
+     font-size: 2.4rem;
+     margin-bottom: 2rem;
     }
     form {
-      background: #a7f3d0;
-      padding: 2.5rem 3rem;
-      border-radius: 2rem;
-      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
-      max-width: 400px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-    }
-    label {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #004d40;
-      -webkit-user-select: none;
-      user-select: text;
-    }
-    input[type="text"],
-    input[type="password"] {
-      padding: 0.75rem 1rem;
-      font-size: 1.1rem;
-      border: 2.5px solid #e91e63;
-      border-radius: 1rem;
-      outline-offset: 2px;
-      transition: border-color 0.3s ease;
-      font-family: "Poppins", sans-serif;
-      color: #00332f;
-      -webkit-user-select: none;
-      user-select: text;
-    }
-    input[type="text"]:focus,
-    input[type="password"]:focus {
-      border-color: #b00045;
-      box-shadow: 0 0 8px rgb(176 0 69 / 0.6);
-      outline: none;
+     padding: 2rem 2rem;
     }
     button[type="submit"] {
-      background: #e91e63;
-      color: #fff9f7;
-      font-weight: 700;
-      font-size: 1.3rem;
-      padding: 1rem 0;
-      border: none;
-      border-radius: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgb(233 30 99 / 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: "Pacifico", cursive;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 3px #00000088;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    button[type="submit"]:hover,
-    button[type="submit"]:focus {
-      background: #b00045;
-      box-shadow: 0 14px 28px rgb(176 0 69 / 0.85);
-      outline: none;
-      color: #fff9f7;
-    }
-    p {
-      margin-top: 1.8rem;
-      font-size: 1rem;
-      color: #004d40dd;
-      text-align: center;
-      -webkit-user-select: none;
-      user-select: text;
-    }
-    p a {
-      color: #e91e63;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    p a:hover,
-    p a:focus {
-      color: #b00045;
-      outline: none;
-      text-decoration: underline;
+     font-size: 1.15rem;
+     padding: 0.85rem 0;
     }
     #google-login {
-      margin-top: 2.5rem;
-      background: #00aaff;
-      color: white;
-      font-weight: 700;
-      font-size: 1.2rem;
-      padding: 0.9rem 1.5rem;
-      border: none;
-      border-radius: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgb(0 170 255 / 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: "Poppins", sans-serif;
-      -webkit-user-select: none;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      max-width: 400px;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
+     font-size: 1.15rem;
+     padding: 0.8rem 1.2rem;
+     gap: 0.6rem;
     }
-    #google-login:hover,
-    #google-login:focus {
-      background: #0077aa;
-      box-shadow: 0 12px 28px rgb(0 119 170 / 0.85);
-      outline: none;
-    }
-    #google-login::before {
-      content: "";
-      display: inline-block;
-      width: 22px;
-      height: 22px;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
-    }
-    @media (max-width: 480px) {
-      #form {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 1rem;
-      }
-      h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
-      }
-      form {
-        padding: 2rem 2rem;
-      }
-      button[type="submit"] {
-        font-size: 1.15rem;
-        padding: 0.85rem 0;
-      }
-      #google-login {
-        font-size: 1.1rem;
-        padding: 0.8rem 1.2rem;
-      }
-    }
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #fff9f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    /* Unique loader: rotating double ring with bouncing dots */
-    .loader-ring {
-      position: relative;
-      width: 80px;
-      height: 80px;
-      border: 6px solid #e91e63;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-      box-shadow: 0 0 15px #e91e63aa;
-    }
-
-    .loader-ring::before,
-    .loader-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 6px solid #004d40;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-      width: 60px;
-      height: 60px;
-      top: 8px;
-      left: 8px;
-      animation: spinReverse 1.5s linear infinite;
-      box-shadow: 0 0 10px #004d40aa;
-    }
-
-    .loader-ring::after {
-      width: 40px;
-      height: 40px;
-      top: 20px;
-      left: 20px;
-      border-color: #ff66b2 transparent transparent transparent;
-      animation-duration: 1s;
-      box-shadow: 0 0 8px #ff66b2aa;
-    }
-
-    /* Bouncing dots inside the ring */
-    .loader-dots {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      pointer-events: none;
-    }
-
-    .loader-dot {
-      width: 14px;
-      height: 14px;
-      background: #e91e63;
-      border-radius: 50%;
-      animation: bounce 1.2s ease-in-out infinite;
-      box-shadow: 0 0 6px #e91e63cc;
-    }
-
-    .loader-dot:nth-child(2) {
-      background: #004d40;
-      animation-delay: 0.2s;
-      box-shadow: 0 0 6px #004d40cc;
-    }
-
-    .loader-dot:nth-child(3) {
-      background: #ff66b2;
-      animation-delay: 0.4s;
-      box-shadow: 0 0 6px #ff66b2cc;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spinReverse {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(-360deg);
-      }
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      50% {
-        transform: translateY(-15px);
-        opacity: 0.6;
-      }
-    }
+   }
   </style>
  </head>
  <body>
-    <div id="loader" aria-label="Loading content" role="alert" aria-busy="true">
-    <div class="loader-ring" aria-hidden="true">
-      <div class="loader-dots">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Show loader on page start (already visible by default)
-    // Hide loader when page fully loaded
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      if (loader) {
-        loader.style.opacity = "0";
-        loader.style.transition = "opacity 0.5s ease";
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 500);
-      }
-    });
-  </script>
-  <img alt="QUIZZERIA logo in pink and teal minimalist doodle style" id="form" loading="lazy" src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg"/>
-  <h2>
-   WELCOME BACK!
-  </h2>
+  <img
+   alt="QUIZZERIA logo in teal and dark minimalist style"
+   id="form-logo"
+   loading="lazy"
+   src="https://i.pinimg.com/736x/07/d8/a6/07d8a6eb57fff7298e20dd76019c07c7.jpg"
+  />
+  <h2>WELCOME BACK</h2>
   <form id="login-form" autocomplete="off" novalidate>
-   <label for="login-username">
-    Username:
-   </label>
-   <input autocomplete="username" id="login-username" name="username" required="" type="text"/>
-   <label for="login-password">
-    Password:
-   </label>
-   <input autocomplete="current-password" id="login-password" name="password" required="" type="password"/>
-   <button type="submit">
-    Login
-   </button>
+   <label for="login-username">USERNAME:</label>
+   <input autocomplete="username" id="login-username" name="username" placeholder="Enter username" required="" type="text" />
+   <label for="login-password">PASSWORD:</label>
+   <input autocomplete="current-password" id="login-password" name="password" placeholder="Enter password" required="" type="password" />
+   <button type="submit">LOGIN</button>
   </form>
   <p>
    Don't have an account? <a href="signup.html">Signup here</a>
