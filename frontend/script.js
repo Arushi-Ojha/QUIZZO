@@ -342,7 +342,6 @@ function startQuiz() {
         return;
     }
     sessionStorage.setItem("quiz_id", quizId);
-    const quizId = sessionStorage.getItem("quiz_id");
     window.location.href = `quiz.html?quiz_id=${quizId}`;
 }
 
