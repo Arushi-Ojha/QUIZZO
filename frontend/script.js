@@ -348,7 +348,7 @@ function startQuiz() {
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
 
-    const quizId = sessionStorage.getItem("quiz_id");
+    let quizId = sessionStorage.getItem("quiz_id");
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
