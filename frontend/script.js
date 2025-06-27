@@ -597,6 +597,50 @@ window.addEventListener("load", async () => {
   }
 });
 
+//====================== PUBLIC QUIZZES========================
+async function displayLatestQuizzes() {
+  try {
+    const response = await fetch(`${BASE_URL}/public/latest-quizzes`);
+    const quizzes = await response.json();
+
+    const container = document.getElementById("latest-quizzes-section");
+    container.innerHTML = ""; 
+
+    quizzes.forEach(quiz => {
+      const quizDiv = document.createElement("div");
+      quizDiv.classList.add("quiz-card");
+      quizDiv.innerHTML = `
+        <h3>${quiz.title}</h3>
+        <p>${quiz.description}</p>
+        <p><strong>Time Limit:</strong> ${quiz.time_limit} minutes</p>
+        <button class="start-quiz-btn" data-id="${quiz.id}">Take Quiz</button>
+      `;
+      container.appendChild(quizDiv);
+    });
+
+    document.querySelectorAll(".start-quiz-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const quizId = e.target.getAttribute("data-id");
+
+        const username = localStorage.getItem("username");
+        if (!username) {
+          alert("Please login or register to take the quiz.");
+          window.location.href = "login.html";
+        } else {
+          localStorage.setItem("selected_quiz_id", quizId);
+          window.location.href = "quiz.html";
+        }
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
+
+  } catch (error) {
+    console.error("Error fetching latest quizzes:", error);
+  }
+}
+
+
 
 // ==================== MAIN ENTRY ===========================
 document.addEventListener("DOMContentLoaded", () => {
