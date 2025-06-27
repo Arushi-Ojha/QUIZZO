@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
@@ -6,639 +5,613 @@
   <title>
    QUIZZERIA
   </title>
-  <script src="script.js" defer=""></script>
-  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Pacifico&display=swap" rel="stylesheet"/>
   <style>
-   * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #fff9f7;
-      color: #00332f;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-    header {
-      background: #e91e63;
-      color: #00332f;
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 12px rgb(233 30 99 / 0.6);
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    header h1 {
-      font-weight: 700;
-      font-size: 2.2rem;
-      letter-spacing: 0.06em;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: "Pacifico", cursive;
-      color: #fff;
-      text-shadow: 1px 1px 3px #00000088;
-    }
-    header h1 span {
-      font-size: 2.4rem;
-    }
-    nav {
-      display: flex;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.6rem 1.3rem;
-      border-radius: 0.75rem;
-      background: #004d40;
-      box-shadow: 0 4px 8px rgb(0 77 64 / 0.5);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-family: "Poppins", sans-serif;
-    }
-    nav a:hover,
-    nav a:focus {
-      background: #00251a;
-      outline: none;
-      box-shadow: 0 6px 14px rgb(0 77 64 / 0.8);
-    }
+   :root {
+    --color-darkest: #003135;
+    --color-dark: #024950;
+    --color-primary: #0fa4af;
+    --color-light: #afdde5;
+   }
+
+   body {
+    font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-darkest);
+    color: var(--color-light);
+    margin: 0;
+    line-height: 1.6;
+   }
+
+   header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
+    -webkit-user-select: none;
+    user-select: none;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+   }
+
+   header h1 {
+    font-weight: 900;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: "Roboto Mono", monospace;
+    color: var(--color-primary);
+    letter-spacing: 0.2em;
+    margin: 0;
+   }
+
+   header h1 span {
+    font-size: 1.5rem;
+    display: none;
+   }
+
+   nav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap;
+   }
+
+   nav a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+   }
+
+   nav a:focus,
+   nav a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-darkest);
+    outline: none;
+   }
+
+   main {
+    max-width: 1100px;
+    margin: 3rem auto 5rem;
+    padding: 0 1rem;
+   }
+
+   /* Hero Section */
+   .hero {
+    background-color: var(--color-dark);
+    border-radius: 0.5rem;
+    padding: 3rem 2rem 4rem;
+    text-align: left;
+    box-shadow: 0 6px 20px rgb(15 164 175 / 0.7);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+   }
+
+   .hero-image-container {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgb(15 164 175 / 0.8);
+    background-color: var(--color-darkest);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+   }
+
+   .hero-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.25rem;
+    filter: grayscale(100%) contrast(1.2) brightness(0.85);
+    object-fit: contain;
+  }
+
+   #heroTitle {
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0 0 1rem 0;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+   #heroText {
+    font-size: 1.125rem;
+    max-width: 600px;
+    color: var(--color-light);
+    opacity: 0.9;
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+  }
+
+   .btn-primary {
+    background-color: transparent;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.125rem;
+    padding: 0.75rem 2.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease,
+      box-shadow 0.3s ease;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    box-shadow: none;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-top: 2rem;
+    align-self: start;
+   }
+
+   .btn-primary:hover,
+   .btn-primary:focus {
+    background-color: var(--color-primary);
+    color: var(--color-darkest);
+    outline: none;
+    box-shadow: 0 0 12px var(--color-primary);
+   }
+
+   /* Features Section */
+   .features {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+   }
+
+   .feature-card {
+    background-color: var(--color-darkest);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    padding: 2rem 1.5rem;
+    text-align: left;
+    cursor: default;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+   }
+
+   .feature-card:focus,
+   .feature-card:hover {
+    border-color: var(--color-light);
+    box-shadow: 0 0 12px var(--color-primary);
+    outline: none;
+   }
+
+   .feature-icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.8);
+    align-self: flex-start;
+  }
+
+   .feature-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+   }
+
+   .feature-desc {
+    font-size: 1rem;
+    color: var(--color-light);
+    opacity: 0.85;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.4;
+   }
+
+   /* About Section */
+   .about {
+    margin-top: 6rem;
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    padding: 2.5rem 3rem 3rem;
+    box-shadow: none;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Roboto", sans-serif;
+    color: var(--color-light);
+    line-height: 1.5;
+   }
+
+   .about h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+   .about p {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    margin-bottom: 1.25rem;
+  }
+
+   /* Learn More Section */
+   .learn-more {
+    margin-top: 4rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--color-darkest);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    padding: 2rem 2.5rem 3rem;
+    box-shadow: none;
+    font-family: "Roboto", sans-serif;
+    color: var(--color-light);
+    line-height: 1.5;
+   }
+
+   .learn-more h3 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin-bottom: 1.25rem;
+    text-align: left;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+   }
+
+   .learn-more ul {
+    list-style: none;
+    padding-left: 0;
+    color: var(--color-light);
+    font-size: 1.125rem;
+    opacity: 0.9;
+    margin: 0;
+   }
+
+   .learn-more ul li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.4;
+   }
+
+   .learn-more ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    text-shadow: none;
+   }
+
+   /* Latest Quizzes Section */
+   #latest-quizzes-section {
+    max-width: 1100px;
+    margin: 4rem auto 5rem;
+    padding: 1rem 2rem;
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    box-shadow: none;
+    color: var(--color-light);
+    font-family: "Roboto", sans-serif;
+   }
+
+   #latest-quizzes-section h3 {
+    font-family: "Pacifico", cursive;
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+   }
+
+   /* Quiz cards inside latest-quizzes-section */
+   .quiz-card {
+    background-color: var(--color-darkest);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    box-shadow: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   .quiz-card:hover,
+   .quiz-card:focus-within {
+    border-color: var(--color-light);
+    box-shadow: 0 0 12px var(--color-primary);
+    outline: none;
+   }
+
+   .quiz-image {
+    flex-shrink: 0;
+    width: 140px;
+    height: 90px;
+    border-radius: 0.25rem;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2) brightness(0.8);
+    box-shadow: none;
+  }
+
+   .quiz-info {
+    flex-grow: 1;
+   }
+
+   .quiz-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+   }
+
+   .quiz-description {
+    font-size: 1rem;
+    color: var(--color-light);
+    opacity: 0.85;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.4;
+   }
+
+   /* Footer */
+   footer {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    -webkit-user-select: none;
+    user-select: none;
+    box-shadow: 0 -2px 8px rgb(0 0 0 / 0.7);
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+   }
+
+   /* Responsive adjustments */
+   @media (max-width: 1024px) {
     main {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3rem 1.5rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
+     max-width: 90vw;
     }
+   }
+
+   @media (max-width: 768px) {
     .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1.8rem;
-      max-width: 700px;
-      width: 100%;
-      background: #a7f3d0;
-      border-radius: 1.8rem;
-      padding: 2.5rem 2.5rem 3.5rem;
-      box-shadow: 0 12px 30px rgb(0 77 64 / 0.3);
-      -webkit-user-select: none;
-      user-select: none;
-      position: relative;
-      overflow: hidden;
+     grid-template-columns: 1fr;
+     padding: 2rem 1.5rem 3rem;
+     gap: 2rem;
+     text-align: center;
     }
+
     .hero-image-container {
-      width: 100%;
-      max-width: 600px;
-      height: 280px;
-      border-radius: 1.8rem;
-      overflow: hidden;
-      box-shadow: 0 12px 25px rgb(233 30 99 / 0.35);
-      margin-bottom: 1.8rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
+     padding: 0.5rem;
     }
-    .hero-image-container.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    #heroTitle {
+     font-size: 2rem;
     }
-    .hero-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      -webkit-user-select: none;
-      user-select: none;
-      display: block;
+
+    #heroText {
+     max-width: 100%;
+     font-size: 1rem;
     }
-    .hero h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #e91e63;
-      margin: 0;
-      line-height: 1.1;
-      font-family: "Pacifico", cursive;
-      text-shadow: 1.5px 1.5px 4px #004d40cc;
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
-    }
-    .hero h2.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .hero p {
-      font-size: 1.3rem;
-      color: #00332fdd;
-      line-height: 1.7;
-      margin: 0;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
-    }
-    .hero p.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
+
     .btn-primary {
-      background: #e91e63;
-      color: #fff9f7;
-      font-weight: 700;
-      font-size: 1.3rem;
-      padding: 1rem 3rem;
-      border: none;
-      border-radius: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgb(233 30 99 / 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      -webkit-user-select: none;
-      user-select: none;
-      font-family: "Pacifico", cursive;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 3px #00000088;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s;
-    }
-    .btn-primary.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    section.features {
-      margin-top: 5rem;
-      width: 100%;
-      max-width: 960px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    .feature-card {
-      background: #fff0f5;
-      border: 3px solid #e91e63;
-      border-radius: 1.8rem;
-      padding: 3rem 2.5rem;
-      box-shadow: 0 10px 28px rgb(233 30 99 / 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      font-weight: 600;
-      color: #00332f;
-      min-height: 360px;
-    }
-    .feature-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 40px rgb(233 30 99 / 0.4);
-      border-color: #b00045;
-    }
-    .feature-icon {
-      width: 96px;
-      height: 96px;
-      margin-bottom: 1.5rem;
-      -webkit-user-select: none;
-      user-select: none;
-      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
-    }
-    .feature-title {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #e91e63;
-      font-family: "Pacifico", cursive;
-      text-shadow: 1px 1px 3px #004d40aa;
-    }
-    .feature-desc {
-      font-size: 1.15rem;
-      color: #00332fdd;
-      line-height: 1.6;
-      font-weight: 500;
-    }
-    section.about {
-      margin-top: 6rem;
-      max-width: 720px;
-      background: #a7f3d0;
-      border-radius: 1.8rem;
-      padding: 3.5rem 3rem;
-      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
-      color: #00332f;
-      font-weight: 600;
-      line-height: 1.75;
-      -webkit-user-select: none;
-      user-select: none;
-      text-align: center;
-    }
-    section.about h2 {
-      font-family: "Pacifico", cursive;
-      font-size: 2.8rem;
-      color: #e91e63;
-      margin-bottom: 1.2rem;
-      text-shadow: 1.5px 1.5px 4px #004d40cc;
-    }
-    section.about p {
-      font-size: 1.25rem;
-      margin-bottom: 1.8rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    section.learn-more {
-      margin-top: 5rem;
-      max-width: 900px;
-      background: #fff0f5;
-      border-radius: 1.8rem;
-      padding: 3rem 2.5rem;
-      box-shadow: 0 12px 32px rgb(233 30 99 / 0.25);
-      color: #00332f;
-      font-weight: 600;
-      line-height: 1.7;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    section.learn-more h3 {
-      font-family: "Pacifico", cursive;
-      font-size: 2.2rem;
-      color: #e91e63;
-      margin-bottom: 1rem;
-      text-align: center;
-      text-shadow: 1px 1px 3px #004d40aa;
-    }
-    section.learn-more ul {
-      list-style: none;
-      padding-left: 0;
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.15rem;
-      color: #00332fdd;
-    }
-    section.learn-more ul li {
-      margin-bottom: 1rem;
-      padding-left: 2.5rem;
-      position: relative;
-      font-weight: 500;
-    }
-    section.learn-more ul li::before {
-      content: "🎨";
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 1.5rem;
-      line-height: 1;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    footer {
-      background: #004d40;
-      color: #fff9f7;
-      padding: 2rem 2.5rem;
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 600;
-      -webkit-user-select: none;
-      user-select: none;
-      box-shadow: 0 -6px 14px rgb(0 77 64 / 0.7);
-    }
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      nav {
-        font-size: 0.95rem;
-      }
-      .hero h2 {
-        font-size: 2.2rem;
-      }
-      .btn-primary {
-        font-size: 1.15rem;
-        padding: 0.85rem 2.5rem;
-      }
-      section.features {
-        grid-template-columns: 1fr;
-      }
-      section.learn-more ul {
-        max-width: 100%;
-      }
-      section.about {
-        padding: 2.5rem 1.8rem;
-      }
-      section.learn-more {
-        padding: 2.5rem 1.8rem;
-      }
-      .hero-image-container {
-        height: 200px;
-      }
-    }
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #fff9f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      -webkit-user-select: none;
-      user-select: none;
+     margin: 1.5rem auto 0;
+     display: inline-block;
     }
 
-    /* Unique loader: rotating double ring with bouncing dots */
-    .loader-ring {
-      position: relative;
-      width: 80px;
-      height: 80px;
-      border: 6px solid #e91e63;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: spin 1.5s linear infinite;
-      box-shadow: 0 0 15px #e91e63aa;
+    .features {
+     grid-template-columns: 1fr;
+     gap: 2rem;
     }
 
-    .loader-ring::before,
-    .loader-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 6px solid #004d40;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-      width: 60px;
-      height: 60px;
-      top: 8px;
-      left: 8px;
-      animation: spinReverse 1.5s linear infinite;
-      box-shadow: 0 0 10px #004d40aa;
+    .about,
+    .learn-more {
+     padding: 2rem 1.5rem 2.5rem;
+     margin: 3rem 1rem 4rem;
     }
 
-    .loader-ring::after {
-      width: 40px;
-      height: 40px;
-      top: 20px;
-      left: 20px;
-      border-color: #ff66b2 transparent transparent transparent;
-      animation-duration: 1s;
-      box-shadow: 0 0 8px #ff66b2aa;
+    #latest-quizzes-section {
+     padding: 1rem 1rem;
+     margin: 3rem 1rem 4rem;
     }
 
-    /* Bouncing dots inside the ring */
-    .loader-dots {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      pointer-events: none;
+    .quiz-card {
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 1rem;
     }
 
-    .loader-dot {
-      width: 14px;
-      height: 14px;
-      background: #e91e63;
-      border-radius: 50%;
-      animation: bounce 1.2s ease-in-out infinite;
-      box-shadow: 0 0 6px #e91e63cc;
+    .quiz-image {
+     width: 100%;
+     height: 160px;
+     border-radius: 0.5rem;
+     filter: grayscale(100%) contrast(1.1) brightness(0.75);
+    }
+   }
+
+   @media (max-width: 480px) {
+    header {
+     flex-direction: column;
+     gap: 1rem;
+     padding: 1rem 1.5rem;
     }
 
-    .loader-dot:nth-child(2) {
-      background: #004d40;
-      animation-delay: 0.2s;
-      box-shadow: 0 0 6px #004d40cc;
+    nav {
+     gap: 1rem;
+     flex-wrap: wrap;
+     justify-content: center;
+     width: 100%;
     }
-
-    .loader-dot:nth-child(3) {
-      background: #ff66b2;
-      animation-delay: 0.4s;
-      box-shadow: 0 0 6px #ff66b2cc;
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spinReverse {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(-360deg);
-      }
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      50% {
-        transform: translateY(-15px);
-        opacity: 0.6;
-      }
-    }
-    .features{
-      border-color: #00251a;
-    }
+   }
   </style>
  </head>
  <body>
-    <div id="loader" aria-label="Loading content" role="alert" aria-busy="true">
-    <div class="loader-ring" aria-hidden="true">
-      <div class="loader-dots">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    localStorage.clear();
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      if (loader) {
-        loader.style.opacity = "0";
-        loader.style.transition = "opacity 0.5s ease";
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 500);
-      }
-    });
-  </script>
   <header>
    <h1>
-    <span>
-     🎀
-    </span>
     QUIZZERIA
-    <span>
-     🎀
-    </span>
    </h1>
    <nav>
     <a href="#features" tabindex="0">
-     Features
+     FEATURES
     </a>
     <a href="#about" tabindex="0">
-     About
+     ABOUT
     </a>
     <a href="login.html" tabindex="0">
-     Login
+     LOGIN
     </a>
     <a href="signup.html" tabindex="0">
-     Register
+     REGISTER
     </a>
    </nav>
   </header>
   <main>
    <section aria-label="Main introduction to Quizzaria" class="hero">
     <div class="hero-image-container" id="heroImageContainer">
-     <img alt="Minimalist cartoon doodle style quiz scene with smiling characters, question marks, and colorful quiz elements in pink, teal, and cream" height="280" loading="lazy" src="https://img.freepik.com/premium-photo/library-dreams-unveiled-anime-cartoon-bookworm-s-fantasy_802234-13330.jpg" width="600"/>
+     <img alt="Abstract futuristic digital interface with data streams and geometric shapes in teal and dark blue" height="280" loading="lazy" src="https://storage.googleapis.com/a1aa/image/067ecd70-9fc6-40ff-c795-98f6ac6434bd.jpg" width="600"/>
     </div>
-    <h2 id="heroTitle">
-     Welcome to QUIZZERIA
-    </h2>
-    <p id="heroText">
-     The ultimate platform to challenge your knowledge, learn new things, and compete with friends. Join thousands of quiz enthusiasts and sharpen your mind today!
-    </p>
-    <button class="btn-primary" id="getStartedBtn" onclick="window.location.href='login.html'">
-     Get Started
-    </button>
+    <div>
+     <h2 id="heroTitle">
+      WELCOME TO QUIZZERIA
+     </h2>
+     <p id="heroText">
+      The ultimate platform to challenge your knowledge, learn new things, and compete with friends. Join thousands of quiz enthusiasts and sharpen your mind today!
+     </p>
+     <button class="btn-primary" id="getStartedBtn" onclick="window.location.href='login.html'" type="button">
+      GET STARTED
+     </button>
+    </div>
    </section>
    <section aria-label="Features of Quizzaria" class="features" id="features">
     <article class="feature-card" tabindex="0">
-     <img alt="Minimalist cartoon open book with stars doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg" width="96"/>
+     <img alt="Monochrome icon of an open book with digital pixel effect" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/c9883459-d4d8-4294-10a5-945519c64ddb.jpg" width="96"/>
      <h3 class="feature-title">
-      Diverse Quiz Topics
+      DIVERSE QUIZ TOPICS
      </h3>
      <p class="feature-desc">
-      Explore quizzes on literature, history, science, pop culture, and more — all in a fun, doodle-inspired style.
+      Explore quizzes on literature, history, science, pop culture, and more — all presented in a clean, professional style.
      </p>
     </article>
     <article class="feature-card" tabindex="0">
-     <img alt="Minimalist cartoon trophy with stars doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/51b94d3a-b6f5-4faa-e35a-2f88d4e27ea7.jpg" width="96"/>
+     <img alt="Monochrome icon of a trophy with sharp geometric lines" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/42146e35-414e-488f-a0e2-a250e7fdaeef.jpg" width="96"/>
      <h3 class="feature-title">
-      Competitive Leaderboards
+      COMPETITIVE LEADERBOARDS
      </h3>
      <p class="feature-desc">
-      Compete with players worldwide and climb the ranks to become a quiz champion with colorful badges and rewards.
+      Compete with players worldwide and climb the ranks to become a quiz champion with precise metrics and clear rewards.
      </p>
     </article>
     <article class="feature-card" tabindex="0">
-     <img alt="Minimalist cartoon smartphone with quiz app doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/b9949ece-2a7c-4128-d16a-35d2f63e3e07.jpg" width="96"/>
+     <img alt="Monochrome icon of a smartphone with a clean UI outline" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/c4f7878b-14e3-4954-ca0b-13bd34957ea3.jpg" width="96"/>
      <h3 class="feature-title">
-      Mobile Friendly
+      MOBILE FRIENDLY
      </h3>
      <p class="feature-desc">
-      Enjoy a seamless experience on any device, whether on your phone, tablet, or desktop — all with a playful, doodle vibe.
+      Enjoy a seamless experience on any device, optimized for speed and clarity without distractions.
      </p>
     </article>
     <article class="feature-card" tabindex="0">
-     <img alt="Minimalist cartoon lock with heart doodle icon in pink and teal" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/8b1a7573-1eb0-4373-ea52-5df01c01717e.jpg" width="96"/>
+     <img alt="Monochrome icon of a lock with minimalistic design" class="feature-icon" height="96" loading="lazy" src="https://storage.googleapis.com/a1aa/image/3598103a-c3b1-4742-6ac1-8c56dfe0f467.jpg" width="96"/>
      <h3 class="feature-title">
-      Secure &amp; Private
+      SECURE &amp; PRIVATE
      </h3>
      <p class="feature-desc">
-      Your data is safe with us. We prioritize your privacy and security with a friendly, trustworthy approach.
+      Your data is protected with industry-standard security protocols and strict privacy policies.
      </p>
     </article>
    </section>
    <section aria-label="About QUIZZERIA" class="about" id="about">
     <h2>
-     About QUIZZERIA
+     ABOUT QUIZZERIA
     </h2>
     <p>
-     QUIZZERIA was created by a passionate team of educators and developers who believe that learning should be fun, engaging, and accessible to everyone. Our platform offers a rich collection of quizzes designed to challenge your intellect and help you grow your knowledge every day.
+     QUIZZERIA was created by a dedicated team of educators and developers who believe that learning should be efficient, precise, and accessible. Our platform offers a comprehensive collection of quizzes designed to challenge your intellect and help you grow your knowledge every day.
     </p>
     <p>
-     We combine playful cartoonish doodle designs with serious learning to make your quiz experience delightful and memorable. Whether you're a casual learner or a competitive quizzer, QUIZZERIA has something special for you!
+     We combine a clean, minimalistic design with robust learning tools to make your quiz experience straightforward and effective. Whether you're a casual learner or a competitive quizzer, QUIZZERIA delivers a professional environment for growth.
     </p>
    </section>
    <section aria-label="Learn more about QUIZZERIA" class="learn-more">
     <h3>
-     Why Choose QUIZZERIA?
+     WHY CHOOSE QUIZZERIA?
     </h3>
     <ul>
      <li>
-      Engaging quizzes designed with colorful, minimalist doodle art to keep you motivated.
+      Engaging quizzes designed with a clean, minimalistic style to maintain focus.
      </li>
      <li>
-      Regularly updated content to keep your knowledge fresh and exciting.
+      Regularly updated content to keep your knowledge current and relevant.
      </li>
      <li>
-      Intuitive and responsive design for smooth experience on all devices.
+      Intuitive and responsive design optimized for all devices.
      </li>
      <li>
-      Safe and secure platform with privacy-first approach.
+      Safe and secure platform with a strict privacy-first approach.
      </li>
      <li>
-      Community-driven challenges and events to connect with fellow quiz lovers.
+      Data-driven challenges and events to connect with fellow quiz professionals.
      </li>
     </ul>
    </section>
+   <section aria-label="Latest quizzes on QUIZZERIA" id="latest-quizzes-section" tabindex="0">
+    <h3>
+     LATEST QUIZZES
+    </h3>
+    <div id="latest-quizzes-container">
+     <!-- Quiz cards will be dynamically inserted here -->
+    </div>
+   </section>
   </main>
-<div id="latest-quizzes-section" class="latest-quizzes-container">
-  <!-- Quizzes will be dynamically inserted here by JS -->
-</div>
-
-
   <footer>
-   © 2024 QUIZZERIA. All rights reserved. Made with 🎀 by the QUIZZERIA Team.
+   © 2024 QUIZZERIA. ALL RIGHTS RESERVED.
   </footer>
-  <script>
-   window.addEventListener("load", () => {
-     const heroImage = document.getElementById("heroImageContainer");
-     const heroTitle = document.getElementById("heroTitle");
-     const heroText = document.getElementById("heroText");
-     const getStartedBtn = document.getElementById("getStartedBtn");
-
-     // Animate hero image container
-     setTimeout(() => {
-       heroImage.classList.add("visible");
-     }, 200);
-
-     // Animate hero title
-     setTimeout(() => {
-       heroTitle.classList.add("visible");
-     }, 600);
-
-     // Animate hero paragraph
-     setTimeout(() => {
-       heroText.classList.add("visible");
-     }, 900);
-
-     // Animate button
-     setTimeout(() => {
-       getStartedBtn.classList.add("visible");
-     }, 1200);
-   });
-  </script>
-  <script src="script.js"></script>
  </body>
+ <script src="script.js"></script>
 </html>
