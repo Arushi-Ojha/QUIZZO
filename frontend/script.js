@@ -579,23 +579,7 @@ function setupLeaderboardPage() {
     setInterval(fetchLeaderboard, 5000);
 }
 
-window.addEventListener("load", async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/latest-quizzes`);
-    const quizzes = await response.json();
 
-    const section = document.getElementById("latest-quizzes");
-    section.innerHTML = quizzes.map(quiz => `
-      <article class="feature-card">
-        <h3 class="feature-title">${quiz.title}</h3>
-        <p class="feature-desc">${quiz.description}</p>
-        <p class="feature-desc"><strong>Time Limit:</strong> ${quiz.time_limit} min</p>
-      </article>
-    `).join("");
-  } catch (error) {
-    console.error("Error fetching latest quizzes:", error);
-  }
-});
 
 //====================== PUBLIC QUIZZES========================
 async function displayLatestQuizzes() {
