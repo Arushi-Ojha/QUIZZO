@@ -343,11 +343,11 @@ function startQuiz() {
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
 
-    const quizId = sessionStorage.getItem("quizId") || localStorage.getItem("quiz_id");
+    const quizId = sessionStorage.getItem("quizId") || localStorage.getItem("quizId");
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
-        localStorage.setItem("quiz_id", quizId);  // Sync to avoid issues
+        localStorage.setItem("quizId", quizId);  // Sync to avoid issues
     }
 
     if (!quizId || !user_id) {
