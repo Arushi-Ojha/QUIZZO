@@ -182,6 +182,7 @@ function setupCreateQuizPage() {
     function displayQuiz(quiz) {
         const quizDiv = document.createElement("div");
         quizDiv.innerHTML = `
+        <div class="quiz-item" role="region" aria-label="Quiz titled Sample Quiz 1">
             <h3>${quiz.title}</h3>
             <p><strong>Quiz ID:</strong> ${quiz.id} (Share this id with your students!)</p>
             <p><strong>Description:</strong> ${quiz.description}</p>
@@ -189,6 +190,7 @@ function setupCreateQuizPage() {
             <button class="edit-btn" data-id="${quiz.id}">EDIT</button>
             <button class="leaderboard-btn" data-id="${quiz.id}">LEADERBOARD</button>
             <hr>
+        </div>
         `;
         quizzesList.prepend(quizDiv);
         quizDiv.querySelector(".edit-btn").addEventListener("click", () => {

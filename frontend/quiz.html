@@ -1,14 +1,147 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANSWERS THE QUESTIONS</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="resources\favicon.png" type="image/x-icon" />
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Answer the Questions - QUIZZERIA</title>
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fff9f7;
+      color: #00332f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-user-select: none;
+      user-select: none;
+      min-height: 100vh;
+      padding: 2rem 1rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #questions {
+      max-width: 600px;
+      width: 100%;
+      background: #a7f3d0;
+      border-radius: 2rem;
+      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
+      padding: 2rem 2.5rem;
+      font-family: "Poppins", sans-serif;
+      color: #00332f;
+      -webkit-user-select: text;
+      user-select: text;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .question-card {
+      background: #ff66b2;
+      border-radius: 1.5rem;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+      color: #fff9f7;
+      -webkit-user-select: none;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .question-text {
+      font-family: "Pacifico", cursive;
+      font-size: 1.5rem;
+      margin: 0;
+      text-shadow: 1px 1px 3px rgba(0, 77, 64, 0.8);
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .option-label {
+      background: #fff9f7;
+      color: #00332f;
+      border-radius: 1rem;
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: text;
+      border: 2.5px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .option-label:hover,
+    .option-label:focus-within {
+      border-color: #e91e63;
+      background-color: #ffe6f0;
+      outline: none;
+    }
+    input[type="radio"] {
+      accent-color: #e91e63;
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+    button#submit-quiz {
+      background: #e91e63;
+      color: #fff9f7;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(233, 30, 99, 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: "Pacifico", cursive;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.53);
+      -webkit-user-select: none;
+      user-select: none;
+      max-width: 300px;
+      width: 100%;
+      margin: 2rem auto 0 auto;
+      display: block;
+    }
+    button#submit-quiz:hover,
+    button#submit-quiz:focus {
+      background: #b00045;
+      box-shadow: 0 14px 28px rgba(176, 0, 69, 0.85);
+      outline: none;
+      color: #fff9f7;
+    }
+    @media (max-width: 480px) {
+      #questions {
+        padding: 1.5rem 1.5rem;
+      }
+      .question-text {
+        font-size: 1.3rem;
+      }
+      .option-label {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+      }
+      button#submit-quiz {
+        font-size: 1.15rem;
+        padding: 0.85rem 0;
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="questions"></div>
-    <script src="script.js"></script>
+  <main id="questions" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" role="main">
+    <!-- Questions will be dynamically inserted here -->
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>

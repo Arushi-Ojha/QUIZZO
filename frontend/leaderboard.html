@@ -1,29 +1,143 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEADERBOARD</title>
-    <link rel="icon" href="resources\favicon.png" type="image/x-icon" />
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Leaderboard - QUIZZERIA</title>
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fff9f7;
+      color: #00332f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-user-select: none;
+      user-select: none;
+      min-height: 100vh;
+      padding: 2rem 1rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      font-family: "Pacifico", cursive;
+      font-size: 2.8rem;
+      color: #e91e63;
+      margin-bottom: 2rem;
+      text-shadow: 1.5px 1.5px 4px #004d40cc;
+      -webkit-user-select: none;
+      user-select: none;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 700px;
+      background: #a7f3d0;
+      border-radius: 1.5rem;
+      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
+      overflow: hidden;
+      -webkit-user-select: none;
+      user-select: text;
+    }
+    thead {
+      background: #e91e63;
+      color: #fff9f7;
+      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.1rem;
+      text-align: left;
+    }
+    thead tr th {
+      padding: 1rem 1.5rem;
+      border-right: 1px solid #b00045aa;
+    }
+    thead tr th:last-child {
+      border-right: none;
+    }
+    tbody tr {
+      border-bottom: 1.5px solid #004d40aa;
+      transition: background-color 0.3s ease;
+    }
+    tbody tr:hover {
+      background-color: #ff66b2cc;
+      color: #fff9f7;
+    }
+    tbody tr td {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #00332f;
+      border-right: 1px solid #004d40aa;
+    }
+    tbody tr td:last-child {
+      border-right: none;
+    }
+    @media (max-width: 640px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tbody tr {
+        margin-bottom: 1.5rem;
+        background: #a7f3d0;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 22px rgb(233 30 99 / 0.5);
+        padding: 1rem 1.5rem;
+      }
+      tbody tr:hover {
+        background-color: #a7f3d0;
+        color: #00332f;
+      }
+      tbody tr td {
+        border: none;
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 50%;
+        font-weight: 600;
+        color: #00332f;
+      }
+      tbody tr td::before {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        font-weight: 700;
+        color: #e91e63;
+        font-family: "Poppins", sans-serif;
+      }
+      tbody tr td:nth-of-type(1)::before { content: "Rank"; }
+      tbody tr td:nth-of-type(2)::before { content: "Username"; }
+      tbody tr td:nth-of-type(3)::before { content: "Score"; }
+      tbody tr td:nth-of-type(4)::before { content: "Total Questions"; }
+      tbody tr td:nth-of-type(5)::before { content: "Submitted At"; }
+    }
+  </style>
 </head>
-<link rel="stylesheet" href="css/style.css">
 <body>
-    <script src="script.js"></script>
-    <h2>Quiz Leaderboard</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Score</th>
-                <th>Total Questions</th>
-                <th>Submitted At</th>
-            </tr>
-        </thead>
-        <tbody id="leaderboard-body">
-            <!-- Rows go here -->
-        </tbody>
-    </table>
-    
+  <h2>Quiz Leaderboard</h2>
+  <table role="table" aria-label="Quiz Leaderboard">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Username</th>
+        <th scope="col">Score</th>
+        <th scope="col">Total Questions</th>
+        <th scope="col">Submitted At</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboard-body" role="rowgroup" aria-live="polite" aria-relevant="additions removals">
+      
+    </tbody>
+  </table>
+  <script src="script.js"></script>
 </body>
 </html>

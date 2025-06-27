@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>CREATE QUESTIONS - QUIZZERIA</title>
+  <title>Create Questions - QUIZZERIA</title>
   <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -18,85 +18,224 @@
       user-select: none;
     }
     .custom-heading {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8rem;
-  color: #e91e63;
-  margin-bottom: 2rem; /* matches mb-8 in Tailwind */
-  text-shadow: 1.5px 1.5px 4px rgba(0, 77, 64, 0.8);
-  -webkit-user-select: none;
-  user-select: none;
-}
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      color: #e91e63;
+      margin-bottom: 2rem;
+      text-shadow: 1.5px 1.5px 4px rgba(0, 77, 64, 0.8);
+      -webkit-user-select: none;
+      user-select: none;
+      text-align: center;
+    }
+    label {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: #004d40;
+      -webkit-user-select: none;
+      user-select: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+      font-family: "Poppins", sans-serif;
+      color: #00332f;
+      border: 2.5px solid #e91e63;
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 1.125rem;
+      outline-offset: 2px;
+      transition: border-color 0.3s ease;
+      -webkit-user-select: none;
+      user-select: text;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 1.25rem;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="number"]:focus {
+      border-color: #b00045;
+      box-shadow: 0 0 8px rgba(176, 0, 69, 0.6);
+      outline: none;
+    }
+    button[type="submit"] {
+      background: #e91e63;
+      color: #fff9f7;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(233, 30, 99, 0.7);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: "Pacifico", cursive;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.53);
+      -webkit-user-select: none;
+      user-select: none;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background: #b00045;
+      box-shadow: 0 14px 28px rgba(176, 0, 69, 0.85);
+      outline: none;
+      color: #fff9f7;
+    }
+    #form {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      margin: 0 auto 1.5rem auto;
+      -webkit-user-select: none;
+      user-select: none;
+      filter: drop-shadow(0 2px 3px rgba(233,30,99,0.4));
+      border-radius: 1rem;
+      display: block;
+    }
+    #Questions-list {
+      max-width: 400px;
+      width: 100%;
+      margin-top: 2.5rem;
+      background: #a7f3d0;
+      border-radius: 2rem;
+      box-shadow: 0 14px 36px rgba(0, 77, 64, 0.3);
+      padding: 1.5rem 2rem;
+      color: #00332f;
+      font-family: "Poppins", sans-serif;
+      -webkit-user-select: text;
+      user-select: text;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .question-item {
+      background: #ff66b2;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 6px 15px rgba(233, 30, 99, 0.5);
+      -webkit-user-select: none;
+      color: #fff9f7;
+      user-select: none;
+    }
+    .question-item h3 {
+      font-family: "Pacifico", cursive;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+      color: #fff9f7;
+      text-shadow: 1px 1px 3px rgba(0, 77, 64, 0.8);
+    }
+    .question-item p {
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #fff9f7dd;
+    }
+    .question-item span {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #004d40dd;
+      background: #a7f3d0;
+      padding: 0.15rem 0.5rem;
+      border-radius: 0.6rem;
+      -webkit-user-select: none;
+      user-select: text;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+    @media (max-width: 480px) {
+      .custom-heading {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+      #form {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 1rem;
+      }
+      input[type="text"],
+      input[type="password"],
+      input[type="number"] {
+        font-size: 1rem;
+        padding: 0.6rem 0.9rem;
+        margin-bottom: 1rem;
+      }
+      button[type="submit"] {
+        font-size: 1.1rem;
+        padding: 0.85rem 0;
+      }
+      #Questions-list {
+        padding: 1rem 1.5rem;
+        min-height: 80px;
+      }
+    }
   </style>
-  <script src="script.js" defer></script>
 </head>
-<body class="flex flex-col items-center min-h-screen px-4 pt-8 pb-12 bg-[#fff9f7] text-[#00332f] select-none">
+<body>
   <img
     id="form"
     loading="lazy"
     alt="QUIZZERIA logo in pink and teal minimalist doodle style"
     src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg"
-    class="w-28 h-28 object-contain mb-6 rounded-xl drop-shadow-[0_2px_3px_rgba(233,30,99,0.4)] select-none"
   />
-  <h2 class="custom-heading">
-    Create Questions
-  </h2>
+  <h2 class="custom-heading">Create Questions</h2>
   <form
     id="create-question"
     autocomplete="off"
     novalidate
-    class="bg-[#a7f3d0] max-w-md w-full rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-10 flex flex-col gap-6"
+    class="max-w-md w-full bg-[#a7f3d0] rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-10 flex flex-col gap-6 mx-auto"
   >
-    <label for="question" class="font-semibold text-lg text-[#004d40] select-text">Question:</label>
+    <label for="question">Question:</label>
     <input
       id="question"
       name="question"
       type="text"
       placeholder="Enter your question"
       required
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      maxlength="500"
     />
-
-    <label for="op1" class="font-semibold text-lg text-[#004d40] select-text">Option A:</label>
+    <label for="op1">Option A:</label>
     <input
       id="op1"
       name="op1"
       type="text"
       placeholder="Option A"
       required
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      maxlength="100"
     />
-
-    <label for="op2" class="font-semibold text-lg text-[#004d40] select-text">Option B:</label>
+    <label for="op2">Option B:</label>
     <input
       id="op2"
       name="op2"
       type="text"
       placeholder="Option B"
       required
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      maxlength="100"
     />
-
-    <label for="op3" class="font-semibold text-lg text-[#004d40] select-text">Option C:</label>
+    <label for="op3">Option C:</label>
     <input
       id="op3"
       name="op3"
       type="text"
       placeholder="Option C"
       required
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      maxlength="100"
     />
-
-    <label for="op4" class="font-semibold text-lg text-[#004d40] select-text">Option D:</label>
+    <label for="op4">Option D:</label>
     <input
       id="op4"
       name="op4"
       type="text"
       placeholder="Option D"
       required
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
+      maxlength="100"
     />
-
-    <label for="co_op" class="font-semibold text-lg text-[#004d40] select-text">Correct Option:</label>
+    <label for="co_op">Correct Option:</label>
     <input
       id="co_op"
       name="correctOption"
@@ -105,24 +244,11 @@
       required
       maxlength="1"
       pattern="[ABCDabcd]"
-      class="px-4 py-3 text-lg border-2.5 border-[#e91e63] rounded-xl outline-offset-2 transition-colors font-poppins text-[#00332f] focus:border-[#b00045] focus:shadow-[0_0_8px_rgba(176,0,69,0.6)] focus:outline-none select-text"
       title="Enter A, B, C, or D"
     />
-
-    <button
-      id="Create-Question"
-      type="submit"
-      class="bg-[#e91e63] text-[#fff9f7] font-pacifico font-bold text-xl py-4 rounded-2xl shadow-[0_10px_22px_rgba(233,30,99,0.7)] transition-colors transition-shadow tracking-widest text-shadow-[0_0_3px_rgba(0,0,0,0.53)] cursor-pointer select-none hover:bg-[#b00045] hover:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:bg-[#b00045] focus:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:outline-none"
-    >
-      CREATE A NEW QUESTION +
-    </button>
+    <button id="Create-Question" type="submit">CREATE A NEW QUESTION +</button>
   </form>
-
-  <div
-    id="Questions-list"
-    class="max-w-md w-full mt-10 bg-[#a7f3d0] rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-6 text-[#00332f] font-poppins select-text min-h-[100px] space-y-4"
-  >
-  </div>
+  <div id="Questions-list" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" class="max-w-md w-full mt-10 mx-auto"></div>
   <script src="script.js"></script>
 </body>
 </html>
