@@ -70,7 +70,7 @@ function setupLoginForm() {
             alert(`Login failed: ${data.detail}`);
         }
     });
-    
+
 }
 
 function setupGoogleLogin() {
@@ -337,7 +337,7 @@ async function fetchQuizDetails() {
 }
 
 function startQuiz() {
-     const quizId = document.getElementById("quiz-id-input").value;
+    const quizId = document.getElementById("quiz-id-input").value;
     localStorage.setItem("quiz_id", quizId);
     window.location.href = "quiz.html";
 }
@@ -349,7 +349,7 @@ async function setupQuizPage() {
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
-        localStorage.setItem("quiz_id", quizId);  
+        localStorage.setItem("quiz_id", quizId);
     }
 
     if (!quizId || !user_id) {
@@ -405,20 +405,20 @@ async function setupQuizPage() {
     window.onpopstate = () => history.go(1);
     try {
         try {
-    const res = await fetch(`${BASE_URL}/questions/quiz/${quizId}`);
-    if (!res.ok) {
-        console.error("Failed to fetch questions. Status:", res.status);
-        alert("Could not load questions: " + res.status);
-        return;
-    }
-    questions = await res.json();
-    console.log("Fetched questions:", questions);
-    totalQuestions = questions.length;
-} catch (err) {
-    console.error("Error loading questions:", err);
-    alert("Error loading quiz questions.");
-    return;
-}
+            const res = await fetch(`${BASE_URL}/questions/quiz/${quizId}`);
+            if (!res.ok) {
+                console.error("Failed to fetch questions. Status:", res.status);
+                alert("Could not load questions: " + res.status);
+                return;
+            }
+            questions = await res.json();
+            console.log("Fetched questions:", questions);
+            totalQuestions = questions.length;
+        } catch (err) {
+            console.error("Error loading questions:", err);
+            alert("Error loading quiz questions.");
+            return;
+        }
 
     } catch (err) {
         alert("Error loading quiz questions.");
@@ -506,18 +506,18 @@ async function setupQuizPage() {
                 username: localStorage.getItem("username")
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            alert(`✅ Quiz Submitted! Your Score: ${score}`);
-            localStorage.removeItem("currentQuestion");
-            localStorage.removeItem("correctAnswers");
-            localStorage.removeItem("startTime");
-            window.location.href = "result.html";
-        })
-        .catch(err => {
-            console.error("Error submitting result:", err);
-            alert("Error submitting result");
-        });
+            .then(res => res.json())
+            .then(data => {
+                alert(`✅ Quiz Submitted! Your Score: ${score}`);
+                localStorage.removeItem("currentQuestion");
+                localStorage.removeItem("correctAnswers");
+                localStorage.removeItem("startTime");
+                window.location.href = "result.html";
+            })
+            .catch(err => {
+                console.error("Error submitting result:", err);
+                alert("Error submitting result");
+            });
     }
     renderQuestion();
     updateTimer();
@@ -584,48 +584,114 @@ function setupLeaderboardPage() {
 
 //====================== PUBLIC QUIZZES========================
 async function displayLatestQuizzes() {
-  try {
-    const response = await fetch(`${BASE_URL}/public/latest-quizzes`);
-    const quizzes = await response.json();
+    try {
+        const response = await fetch(`${BASE_URL}/public/latest-quizzes`);
+        const quizzes = await response.json();
 
-    const container = document.getElementById("latest-quizzes-section");
-    container.innerHTML = ""; 
+        const container = document.getElementById("latest-quizzes-container");
+        container.innerHTML = "";
 
-    quizzes.forEach(quiz => {
-      const quizDiv = document.createElement("div");
-      quizDiv.classList.add("quiz-card");
-      quizDiv.innerHTML = `
-        <h3>QUIZ ID :${quiz.id}<h3>
-        <h3>${quiz.title}</h3>
-        <p>${quiz.description}</p>
-        <p><strong>Time Limit:</strong> ${quiz.time_limit} minutes</p>
-        <button class="start-quiz-btn" data-id="${quiz.id}">Take Quiz</button>
-      `;
-      container.appendChild(quizDiv);
-    });
-
-    document.querySelectorAll(".start-quiz-btn").forEach(button => {
-      button.addEventListener("click", (e) => {
-        const quizId = e.target.getAttribute("data-id");
-
-        const username = localStorage.getItem("username");
-        if (!username) {
-          alert("Please login or register to take the quiz.");
-          window.location.href = "login.html";
-        } else {
-          localStorage.setItem("selected_quiz_id", quizId);
-          window.location.href = "quiz.html";
-        }
-      });
-    });
-
-
-  } catch (error) {
-    console.error("Error fetching latest quizzes:", error);
+        quizzes.forEach(quiz => {
+            const quizDiv = document.createElement("div");
+            quizDiv.classList.add("quiz-card");
+            quizDiv.innerHTML = `
+      <style>
+  .quiz-card {
+    background: var(--card-bg, #D9E2EC);
+    border: 1px solid var(--border-color, #B0C4D9);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    margin: 1.5rem auto;
+    max-width: 700px;
+    color: var(--primary, #3B6790);
+    box-shadow: 0 0 15px rgba(59, 103, 144, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+  .quiz-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(59, 103, 144, 0.2);
+  }
+
+  .quiz-id {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent, #EFB036);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .quiz-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary, #3B6790);
+    margin-bottom: 0.75rem;
+  }
+
+  .quiz-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted, #7A9BBF);
+    margin-bottom: 1rem;
+  }
+
+  .quiz-time {
+    font-size: 1rem;
+    color: var(--text-muted, #7A9BBF);
+    margin-bottom: 1.5rem;
+  }
+
+  .start-quiz-btn {
+    background: var(--secondary, #23486A);
+    color: var(--bg-light, #F5F7FA);
+    border: none;
+    border-radius: 9999px;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(35, 72, 106, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .start-quiz-btn:hover {
+    background: var(--primary, #3B6790);
+    color: var(--bg-light, #F5F7FA);
+    box-shadow: 0 0 20px rgba(59, 103, 144, 0.6);
+  }
+</style>
+<div class="quiz-card">
+  <h3 class="quiz-id">QUIZ ID: ${quiz.id}</h3>
+  <h2 class="quiz-title">${quiz.title}</h2>
+  <p class="quiz-desc">${quiz.description}</p>
+  <p class="quiz-time"><strong>Time Limit:</strong> ${quiz.time_limit} minutes</p>
+  <button class="start-quiz-btn" data-id="${quiz.id}">Take Quiz</button>
+</div>
+      `;
+            container.appendChild(quizDiv);
+        });
+
+        document.querySelectorAll(".start-quiz-btn").forEach(button => {
+            button.addEventListener("click", (e) => {
+                const quizId = e.target.getAttribute("data-id");
+
+                const username = localStorage.getItem("username");
+                if (!username) {
+                    alert("Please login or register to take the quiz.");
+                    window.location.href = "login.html";
+                } else {
+                    localStorage.setItem("selected_quiz_id", quizId);
+                    window.location.href = "quiz.html";
+                }
+            });
+        });
+
+
+    } catch (error) {
+        console.error("Error fetching latest quizzes:", error);
+    }
 }
 
-    document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
+document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
 
 

@@ -1,62 +1,134 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Results - QUIZZERIA</title>
-  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
+  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=3B6790&amp;fg=F5F7FA" rel="icon" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    :root {
+      --primary: #3B6790;
+      --secondary: #23486A;
+      --accent: #EFB036;
+      --text-light: #4C7B8B;
+      --text-muted: #7A9BBF;
+      --bg-light: #F5F7FA;
+      --card-bg: #D9E2EC;
+      --border-color: #B0C4D9;
+    }
+
     body {
       font-family: "Poppins", sans-serif;
-      background: #fff9f7;
-      color: #00332f;
+      background: var(--bg-light);
+      color: var(--primary);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-user-select: none;
       user-select: none;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
     }
+
     .custom-heading {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8rem;
-  color: #e91e63;
-  margin-bottom: 2rem; /* Equivalent to Tailwind's mb-8 */
-  text-shadow: 1.5px 1.5px 4px rgba(0, 77, 64, 0.8);
-  -webkit-user-select: none;
-  user-select: none;
-}
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-shadow: 1.5px 1.5px 4px rgba(75, 123, 139, 0.8);
+      -webkit-user-select: none;
+      user-select: none;
+      text-align: center;
+    }
+
+    #form {
+      width: 7rem;
+      height: 7rem;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      border-radius: 0.75rem;
+      filter: drop-shadow(0 2px 3px rgba(59, 103, 144, 0.4));
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    #result-box {
+      background: var(--card-bg);
+      max-width: 28rem;
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 14px 36px rgba(35, 72, 106, 0.3);
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      color: var(--primary);
+      font-family: "Poppins", sans-serif;
+      -webkit-user-select: none;
+      user-select: text;
+    }
+
+    #result-box .stat {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      background: var(--accent);
+      color: var(--bg-light);
+      font-family: "Pacifico", cursive;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 1.25rem;
+      box-shadow: 0 10px 22px rgba(239, 176, 54, 0.7);
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.53);
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    button:hover,
+    button:focus {
+      background: var(--secondary);
+      box-shadow: 0 14px 28px rgba(35, 72, 106, 0.85);
+      outline: none;
+      color: var(--bg-light);
+    }
   </style>
   <script src="script.js" defer></script>
 </head>
-<body class="flex flex-col items-center min-h-screen px-4 pt-8 pb-12 bg-[#fff9f7] text-[#00332f] select-none">
+
+<body>
   <img
     id="form"
     loading="lazy"
     alt="QUIZZERIA logo in pink and teal minimalist doodle style"
     src="https://storage.googleapis.com/a1aa/image/824f7531-a8f9-4bb6-b583-2d5fb831132a.jpg"
-    class="w-28 h-28 object-contain mb-6 rounded-xl drop-shadow-[0_2px_3px_rgba(233,30,99,0.4)] select-none"
   />
   <h2 class="custom-heading">
     🎉 Quiz Result
   </h2>
-  <div
-    id="result-box"
-    class="bg-[#a7f3d0] max-w-md w-full rounded-2xl shadow-[0_14px_36px_rgba(0,77,64,0.3)] p-10 flex flex-col gap-6 text-[#00332f] font-poppins select-text"
-  >
-    <div id="username" class="stat text-lg font-semibold"></div>
-    <div id="quiz-id" class="stat text-lg font-semibold"></div>
-    <div id="score" class="stat text-lg font-semibold"></div>
-    <div id="total-questions" class="stat text-lg font-semibold"></div>
-    <div id="submitted-at" class="stat text-lg font-semibold"></div>
-    <button
-      onclick="goToDashboard()"
-      class="mt-6 bg-[#e91e63] text-[#fff9f7] font-pacifico font-bold text-xl py-4 rounded-2xl shadow-[0_10px_22px_rgba(233,30,99,0.7)] transition-colors transition-shadow tracking-widest text-shadow-[0_0_3px_rgba(0,0,0,0.53)] cursor-pointer select-none hover:bg-[#b00045] hover:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:bg-[#b00045] focus:shadow-[0_14px_28px_rgba(176,0,69,0.85)] focus:outline-none"
-      type="button"
-    >
+  <div id="result-box">
+    <div id="username" class="stat"></div>
+    <div id="quiz-id" class="stat"></div>
+    <div id="score" class="stat"></div>
+    <div id="total-questions" class="stat"></div>
+    <div id="submitted-at" class="stat"></div>
+    <button onclick="goToDashboard()" type="button">
       JOIN ANOTHER QUIZ
     </button>
   </div>
-  <script src="script.js"></script>
 </body>
+
 </html>

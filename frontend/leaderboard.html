@@ -3,15 +3,25 @@
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Leaderboard - QUIZZERIA</title>
-  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
+  <link href="resources/favicoon-removebg-preview.png" rel="icon" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    :root {
+      --primary: #3B6790;
+      --secondary: #23486A;
+      --accent: #EFB036;
+      --text-light: #4C7B8B;
+      --text-muted: #7A9BBF;
+      --bg-light: #F5F7FA;
+      --card-bg: #D9E2EC;
+      --border-color: #B0C4D9;
+    }
     body {
       font-family: "Poppins", sans-serif;
-      background: #fff9f7;
-      color: #00332f;
+      background: var(--bg-light);
+      color: var(--primary);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-user-select: none;
@@ -23,11 +33,11 @@
       align-items: center;
     }
     h2 {
-      font-family: "Pacifico", cursive;
+      font-weight: 700;
       font-size: 2.8rem;
-      color: #e91e63;
+      color: var(--accent);
       margin-bottom: 2rem;
-      text-shadow: 1.5px 1.5px 4px #004d40cc;
+      text-shadow: 1.5px 1.5px 4px rgba(59, 103, 144, 0.8);
       -webkit-user-select: none;
       user-select: none;
       text-align: center;
@@ -36,16 +46,16 @@
       border-collapse: collapse;
       width: 100%;
       max-width: 700px;
-      background: #a7f3d0;
+      background: var(--card-bg);
       border-radius: 1.5rem;
-      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
+      box-shadow: 0 14px 36px rgba(35, 72, 106, 0.3);
       overflow: hidden;
       -webkit-user-select: none;
       user-select: text;
     }
     thead {
-      background: #e91e63;
-      color: #fff9f7;
+      background: var(--secondary);
+      color: var(--bg-light);
       font-weight: 700;
       font-family: "Poppins", sans-serif;
       font-size: 1.1rem;
@@ -53,25 +63,26 @@
     }
     thead tr th {
       padding: 1rem 1.5rem;
-      border-right: 1px solid #b00045aa;
+      border-right: 1px solid rgba(35, 72, 106, 0.4);
     }
     thead tr th:last-child {
       border-right: none;
     }
     tbody tr {
-      border-bottom: 1.5px solid #004d40aa;
-      transition: background-color 0.3s ease;
+      border-bottom: 1.5px solid rgba(59, 103, 144, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--primary);
     }
     tbody tr:hover {
-      background-color: #ff66b2cc;
-      color: #fff9f7;
+      background-color: var(--secondary);
+      color: var(--bg-light);
     }
     tbody tr td {
       padding: 1rem 1.5rem;
       font-size: 1rem;
       font-weight: 500;
-      color: #00332f;
-      border-right: 1px solid #004d40aa;
+      color: var(--primary);
+      border-right: 1px solid rgba(59, 103, 144, 0.4);
     }
     tbody tr td:last-child {
       border-right: none;
@@ -87,14 +98,15 @@
       }
       tbody tr {
         margin-bottom: 1.5rem;
-        background: #a7f3d0;
+        background: var(--card-bg);
         border-radius: 1.5rem;
-        box-shadow: 0 10px 22px rgb(233 30 99 / 0.5);
+        box-shadow: 0 10px 22px rgba(35, 72, 106, 0.3);
         padding: 1rem 1.5rem;
+        color: var(--primary);
       }
       tbody tr:hover {
-        background-color: #a7f3d0;
-        color: #00332f;
+        background-color: var(--card-bg);
+        color: var(--primary);
       }
       tbody tr td {
         border: none;
@@ -102,7 +114,7 @@
         position: relative;
         padding-left: 50%;
         font-weight: 600;
-        color: #00332f;
+        color: var(--primary);
       }
       tbody tr td::before {
         position: absolute;
@@ -111,7 +123,7 @@
         transform: translateY(-50%);
         white-space: nowrap;
         font-weight: 700;
-        color: #e91e63;
+        color: var(--accent);
         font-family: "Poppins", sans-serif;
       }
       tbody tr td:nth-of-type(1)::before { content: "Rank"; }

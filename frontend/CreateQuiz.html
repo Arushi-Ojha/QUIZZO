@@ -3,33 +3,61 @@
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Create Quiz - QUIZZERIA</title>
-  <link href="https://placehold.co/32x32/png?text=Q&amp;bg=ff66b2&amp;fg=004d40" rel="icon" type="image/x-icon"/>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+  <link href="resources/favicoon-removebg-preview.png" rel="icon" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    :root {
+      --primary: #3B6790;
+      --secondary: #23486A;
+      --accent: #EFB036;
+      --text-light: #4C7B8B;
+      --text-muted: #7A9BBF;
+      --bg-light: #F5F7FA;
+      --card-bg: #D9E2EC;
+      --border-color: #B0C4D9;
+    }
     body {
       font-family: "Poppins", sans-serif;
-      background: #fff9f7;
-      color: #00332f;
+      background: var(--bg-light);
+      color: var(--primary);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-user-select: none;
       user-select: none;
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     h2 {
-      font-family: "Pacifico", cursive;
+      font-weight: 700;
       font-size: 2.8rem;
-      color: #e91e63;
+      color: var(--accent);
       margin-bottom: 2rem;
-      text-shadow: 1.5px 1.5px 4px #004d40cc;
+      text-shadow: 1.5px 1.5px 4px rgba(59, 103, 144, 0.8);
       -webkit-user-select: none;
       user-select: none;
+      text-align: center;
+    }
+    form {
+      background: var(--card-bg);
+      padding: 2.5rem 3rem;
+      border-radius: 2rem;
+      box-shadow: 0 14px 36px rgba(35, 72, 106, 0.3);
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin-bottom: 3rem;
     }
     label {
       font-weight: 600;
       font-size: 1.1rem;
-      color: #004d40;
+      color: var(--primary);
       -webkit-user-select: none;
       user-select: text;
       display: block;
@@ -38,8 +66,8 @@
     input[type="text"],
     input[type="number"] {
       font-family: "Poppins", sans-serif;
-      color: #00332f;
-      border: 2.5px solid #e91e63;
+      color: var(--primary);
+      border: 2.5px solid var(--accent);
       border-radius: 1rem;
       padding: 0.75rem 1rem;
       font-size: 1.1rem;
@@ -49,53 +77,43 @@
       user-select: text;
       width: 100%;
       box-sizing: border-box;
+      background: var(--bg-light);
     }
     input[type="text"]:focus,
     input[type="number"]:focus {
-      border-color: #b00045;
-      box-shadow: 0 0 8px rgb(176 0 69 / 0.6);
+      border-color: #b3861f;
+      box-shadow: 0 0 8px rgba(239, 176, 54, 0.6);
       outline: none;
+      background: var(--bg-light);
     }
     button[type="submit"] {
-      background: #e91e63;
-      color: #fff9f7;
+      background: var(--secondary);
+      color: var(--bg-light);
       font-weight: 700;
       font-size: 1.3rem;
       padding: 1rem 0;
       border: none;
       border-radius: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 10px 22px rgb(233 30 99 / 0.7);
+      box-shadow: 0 10px 22px rgba(35, 72, 106, 0.7);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: "Pacifico", cursive;
       letter-spacing: 0.06em;
-      text-shadow: 0 0 3px #00000088;
       -webkit-user-select: none;
       user-select: none;
       width: 100%;
       margin-top: 1.8rem;
+      font-family: "Poppins", sans-serif;
+      text-shadow: none;
     }
     button[type="submit"]:hover,
     button[type="submit"]:focus {
-      background: #b00045;
-      box-shadow: 0 14px 28px rgb(176 0 69 / 0.85);
+      background: var(--primary);
+      box-shadow: 0 14px 28px rgba(59, 103, 144, 0.85);
       outline: none;
-      color: #fff9f7;
-    }
-    form {
-      background: #a7f3d0;
-      padding: 2.5rem 3rem;
-      border-radius: 2rem;
-      box-shadow: 0 14px 36px rgb(0 77 64 / 0.3);
-      max-width: 400px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-      margin: 0 auto 3rem auto;
+      color: var(--bg-light);
     }
     hr {
-      border-color: #e91e63cc;
+      border-color: var(--accent);
       margin: 2rem auto 3rem auto;
       max-width: 400px;
       width: 100%;
@@ -108,40 +126,43 @@
       width: 100%;
       margin: 0 auto;
       font-family: "Poppins", sans-serif;
-      color: #00332f;
+      color: var(--primary);
     }
     .quiz-item {
-      background: #ff66b2;
+      background: var(--secondary);
       border-radius: 1rem;
       padding: 1rem 1.5rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 6px 15px rgb(233 30 99 / 0.5);
-      color: #fff9f7;
+      box-shadow: 0 6px 15px rgba(35, 72, 106, 0.5);
+      color: var(--bg-light);
       -webkit-user-select: none;
       user-select: none;
     }
     .quiz-item h3 {
-      font-family: "Pacifico", cursive;
+      font-weight: 700;
       font-size: 1.6rem;
       margin-bottom: 0.3rem;
-      color: #fff9f7;
-      text-shadow: 1px 1px 3px #004d40cc;
+      color: var(--bg-light);
+      text-shadow: 1px 1px 3px rgba(35, 72, 106, 0.8);
+      font-family: "Poppins", sans-serif;
     }
     .quiz-item p {
       font-weight: 500;
       font-size: 1rem;
       margin-bottom: 0.3rem;
-      color: #fff9f7dd;
+      color: var(--bg-light);
+      opacity: 0.85;
     }
     .quiz-item span {
       font-weight: 600;
       font-size: 0.95rem;
-      color: #004d40dd;
-      background: #a7f3d0;
+      color: var(--accent);
+      background: var(--card-bg);
       padding: 0.15rem 0.5rem;
       border-radius: 0.6rem;
       -webkit-user-select: text;
       user-select: text;
+      display: inline-block;
     }
     @media (max-width: 480px) {
       h2 {
@@ -161,9 +182,9 @@
     }
   </style>
 </head>
-<body class="bg-[#fff9f7] text-[#00332f] select-none min-h-screen p-8 pt-6 flex flex-col">
+<body class="select-none min-h-screen p-8 pt-6 flex flex-col items-center">
   <script src="script.js"></script>
-  <h2 class="text-center">Create Quizzes</h2>
+  <h2>Create Quizzes</h2>
   <form id="create-quiz-form" autocomplete="off" novalidate>
     <label for="quiz-title">Title:</label>
     <input type="text" id="quiz-title" name="title" required />
@@ -174,7 +195,7 @@
     <button type="submit">Create Quiz</button>
   </form>
   <hr />
-  <h2 class="text-center">Your Existing Quizzes</h2>
+  <h2>Your Existing Quizzes</h2>
   <div id="quizzes-list" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
     <!-- Example quiz items -->
   </div>

@@ -1,226 +1,236 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Sign Up - QUIZZERIA</title>
   <link rel="icon" href="resources/favicoon-removebg-preview.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Roboto&amp;family=Roboto+Mono&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Roboto&amp;family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-   :root {
-    --color-darkest: #003135;
-    --color-dark: #024950;
-    --color-primary: #0fa4af;
-    --color-light: #afdde5;
-   }
+    :root {
+      --primary: #3B6790;
+      --secondary: #23486A;
+      --accent: #EFB036;
+      --text-light: #4C7B8B;
+      --text-muted: #7A9BBF;
+      --bg-light: #F5F7FA;
+      --card-bg: #D9E2EC;
+      --border-color: #B0C4D9;
+    }
 
-   body {
-    margin: 0;
-    font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--color-darkest);
-    color: var(--color-light);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 3rem 1rem 4rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-user-select: none;
-    user-select: none;
-   }
+    body {
+      margin: 0;
+      font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 3rem 1rem 4rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-user-select: none;
+      user-select: none;
+    }
 
-   #form-logo {
-    width: 140px;
-    height: 140px;
-    object-fit: contain;
-    margin-bottom: 2rem;
-    filter: drop-shadow(0 0 8px var(--color-primary));
-    border-radius: 0.5rem;
-    -webkit-user-select: none;
-    user-select: none;
-   }
-
-   h2 {
-    font-family: "Pacifico", cursive;
-    font-size: 3rem;
-    color: var(--color-primary);
-    margin-bottom: 2.5rem;
-    text-shadow: 0 0 8px var(--color-primary);
-    -webkit-user-select: none;
-    user-select: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: center;
-   }
-
-   form {
-    background-color: var(--color-dark);
-    border: 1.5px solid var(--color-primary);
-    border-radius: 1rem;
-    padding: 3rem 3.5rem;
-    box-shadow: 0 6px 20px var(--color-primary);
-    max-width: 420px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-   }
-
-   label {
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--color-primary);
-    -webkit-user-select: text;
-    user-select: text;
-    font-family: "Roboto Mono", monospace;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-   }
-
-   input[type="text"],
-   input[type="email"],
-   input[type="password"],
-   select {
-    padding: 0.85rem 1.25rem;
-    font-size: 1.125rem;
-    border: 2.5px solid var(--color-primary);
-    border-radius: 0.75rem;
-    outline-offset: 3px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: "Roboto", sans-serif;
-    color: var(--color-light);
-    background-color: var(--color-darkest);
-    -webkit-user-select: text;
-    user-select: text;
-    width: 100%;
-    box-sizing: border-box;
-   }
-
-   input[type="text"]::placeholder,
-   input[type="email"]::placeholder,
-   input[type="password"]::placeholder,
-   select::placeholder {
-    color: var(--color-light);
-    opacity: 0.6;
-   }
-
-   input[type="text"]:focus,
-   input[type="email"]:focus,
-   input[type="password"]:focus,
-   select:focus {
-    border-color: var(--color-light);
-    box-shadow: 0 0 10px var(--color-primary);
-    outline: none;
-    background-color: var(--color-dark);
-   }
-
-   button[type="submit"] {
-    background-color: transparent;
-    color: var(--color-primary);
-    font-weight: 700;
-    font-size: 1.3rem;
-    padding: 1rem 0;
-    border: 2.5px solid var(--color-primary);
-    border-radius: 1rem;
-    cursor: pointer;
-    box-shadow: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease,
-     color 0.3s ease;
-    font-family: "Roboto Mono", monospace;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    -webkit-user-select: none;
-    user-select: none;
-    text-shadow: none;
-   }
-
-   button[type="submit"]:hover,
-   button[type="submit"]:focus {
-    background-color: var(--color-primary);
-    color: var(--color-darkest);
-    box-shadow: 0 0 16px var(--color-primary);
-    outline: none;
-   }
-
-   p {
-    margin-top: 2rem;
-    font-size: 1rem;
-    color: var(--color-light);
-    opacity: 0.8;
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    -webkit-user-select: text;
-    user-select: text;
-   }
-
-   p a {
-    color: var(--color-primary);
-    font-weight: 700;
-    text-decoration: none;
-    transition: color 0.3s ease;
-   }
-
-   p a:hover,
-   p a:focus {
-    color: var(--color-light);
-    outline: none;
-    text-decoration: underline;
-   }
-
-   @media (max-width: 480px) {
     #form-logo {
-     width: 110px;
-     height: 110px;
-     margin-bottom: 1.5rem;
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 8px var(--secondary));
+      border-radius: 0.5rem;
+      -webkit-user-select: none;
+      user-select: none;
     }
+
     h2 {
-     font-size: 2.4rem;
-     margin-bottom: 2rem;
+      font-family: "Pacifico", cursive;
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      text-shadow: 0 0 8px var(--accent);
+      -webkit-user-select: none;
+      user-select: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
     }
+
     form {
-     padding: 2rem 2rem;
+      background-color: var(--card-bg);
+      border: 1.5px solid var(--border-color);
+      border-radius: 1rem;
+      padding: 3rem 3.5rem;
+      box-shadow: 0 6px 20px var(--border-color);
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
+
+    label {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--primary);
+      -webkit-user-select: text;
+      user-select: text;
+      font-family: "Roboto Mono", monospace;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      padding: 0.85rem 1.25rem;
+      font-size: 1.125rem;
+      border: 2.5px solid var(--border-color);
+      border-radius: 0.75rem;
+      outline-offset: 3px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: "Roboto", sans-serif;
+      color: var(--primary);
+      background-color: var(--bg-light);
+      -webkit-user-select: text;
+      user-select: text;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="password"]::placeholder,
+    select::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 10px var(--secondary);
+      outline: none;
+      background-color: var(--bg-light);
+    }
+
     button[type="submit"] {
-     font-size: 1.15rem;
-     padding: 0.85rem 0;
+      background-color: transparent;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 0;
+      border: 2.5px solid var(--accent);
+      border-radius: 1rem;
+      cursor: pointer;
+      box-shadow: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease,
+        color 0.3s ease;
+      font-family: "Roboto Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      -webkit-user-select: none;
+      user-select: none;
+      text-shadow: none;
     }
-   }
+
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background-color: var(--accent);
+      color: var(--primary);
+      box-shadow: 0 0 16px var(--accent);
+      outline: none;
+    }
+
+    p {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: var(--primary);
+      opacity: 0.8;
+      text-align: center;
+      font-family: "Roboto", sans-serif;
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
+    p a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    p a:hover,
+    p a:focus {
+      color: var(--secondary);
+      outline: none;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      #form-logo {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+      }
+
+      form {
+        padding: 2rem 2rem;
+      }
+
+      button[type="submit"] {
+        font-size: 1.15rem;
+        padding: 0.85rem 0;
+      }
+    }
   </style>
 </head>
+
 <body>
   <img
-   alt="QUIZZERIA logo in teal and dark minimalist style"
-   id="form-logo"
-   loading="lazy"
-   src="https://i.pinimg.com/736x/57/31/3b/57313bcf9316292a28c51e8428c591eb.jpg"
+    alt="QUIZZERIA logo in teal and dark minimalist style"
+    id="form-logo"
+    loading="lazy"
+    src="https://i.pinimg.com/736x/57/31/3b/57313bcf9316292a28c51e8428c591eb.jpg"
   />
   <h2>Sign Up</h2>
   <form id="signup-form" autocomplete="off" novalidate>
-   <label for="signup-username">USERNAME:</label>
-   <input autocomplete="username" id="signup-username" name="username" placeholder="Enter username" required="" type="text" />
-   <label for="signup-email">EMAIL:</label>
-   <input autocomplete="email" id="signup-email" name="email" placeholder="Enter email" required="" type="email" />
-   <label for="signup-password">PASSWORD:</label>
-   <input autocomplete="new-password" id="signup-password" name="password" placeholder="Enter password" required="" type="password" />
-   <label for="signup-role">ROLE:</label>
-   <select id="signup-role" name="role" required>
-    <option value="" disabled selected>
-     Select Role
-    </option>
-    <option value="admin">
-     Teacher
-    </option>
-    <option value="student">
-     Student
-    </option>
-   </select>
-   <button type="submit">REGISTER</button>
+    <label for="signup-username">USERNAME:</label>
+    <input autocomplete="username" id="signup-username" name="username" placeholder="Enter username" required="" type="text" />
+    <label for="signup-email">EMAIL:</label>
+    <input autocomplete="email" id="signup-email" name="email" placeholder="Enter email" required="" type="email" />
+    <label for="signup-password">PASSWORD:</label>
+    <input autocomplete="new-password" id="signup-password" name="password" placeholder="Enter password" required="" type="password" />
+    <label for="signup-role">ROLE:</label>
+    <select id="signup-role" name="role" required>
+      <option value="" disabled selected>
+        Select Role
+      </option>
+      <option value="admin">
+        Teacher
+      </option>
+      <option value="student">
+        Student
+      </option>
+    </select>
+    <button type="submit">REGISTER</button>
   </form>
   <p>
-   Already have an account? <a href="login.html">Login here</a>
+    Already have an account? <a href="login.html">Login here</a>
   </p>
   <script src="script.js"></script>
 </body>
+
 </html>
