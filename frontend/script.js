@@ -595,7 +595,7 @@ async function displayLatestQuizzes() {
       const quizDiv = document.createElement("div");
       quizDiv.classList.add("quiz-card");
       quizDiv.innerHTML = `
-        <h3>${quiz.id}<h3>
+        <h3>QUIZ ID :${quiz.id}<h3>
         <h3>${quiz.title}</h3>
         <p>${quiz.description}</p>
         <p><strong>Time Limit:</strong> ${quiz.time_limit} minutes</p>
