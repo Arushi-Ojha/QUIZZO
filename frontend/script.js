@@ -180,6 +180,7 @@ function setupCreateQuizPage() {
     });
 
     function displayQuiz(quiz) {
+        const quizzesList = document.getElementById("quizzes-list");
         const quizDiv = document.createElement("div");
         quizDiv.innerHTML = `
         <div class="quiz-item" role="region" aria-label="Quiz titled Sample Quiz 1">
