@@ -337,12 +337,9 @@ async function fetchQuizDetails() {
 
 function startQuiz() {
      const quizId = document.getElementById("quiz-id-input").value;
-    if (!quizId) {
-        alert("Please enter a Quiz ID");
-        return;
-    }
+    
     localStorage.setItem("quiz_id", quizId);
-    window.location.href = `quiz.html?quiz_id=${quizId}`;
+    window.location.href = "quiz.html";
 }
 
 async function setupQuizPage() {
