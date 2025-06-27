@@ -1,1 +1,28 @@
-<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>CREATE QUIZ</title> <script src="./script.js"></script> <link rel="stylesheet" href="css/style.css"> <link rel="icon" href="resources\favicon.png" type="image/x-icon" /> </head> <link rel="stylesheet" href="css/style.css"> <body> <h2>Create a New Quiz</h2> <form id="create-quiz-form"> <label>Title: <input type="text" id="quiz-title" required></label><br><br> <label>Description: <input type="text" id="quiz-description" required></label><br><br> <label>Time Limit (mins): <input type="number" id="quiz-time-limit" required></label><br><br> <button type="submit">Create Quiz</button> </form> <hr> <h2>Your Existing Quizzes</h2> <div id="quizzes-list"> <!-- Existing quizzes will be shown here --> </div> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE QUIZ</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="resources\favicon.png" type="image/x-icon" />
+  </head> <link rel="stylesheet" href="css/style.css">
+  <body>
+    <h2>Create Quizzes</h2>
+    <form id="create-quiz-form">
+      <label>Title: <input type="text" id="quiz-title" required></label>
+      <br><br>
+      <label>Description: 
+        <input type="text" id="quiz-description" required></label>
+        <br><br>
+        <label>Time Limit (mins):
+        <input type="number" id="quiz-time-limit" required></label>
+        <br><br>
+        <button type="submit">Create Quiz</button>
+      </form>
+      <hr>
+      <h2>Your Existing Quizzes</h2>
+      <div id="quizzes-list"> <!-- Existing quizzes will be shown here --> </div>
+    </body>
+    </html> 
