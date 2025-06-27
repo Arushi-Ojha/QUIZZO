@@ -336,6 +336,12 @@ async function fetchQuizDetails() {
 }
 
 function startQuiz() {
+     const quizId = document.getElementById("quiz-id-input").value;
+    if (!quizId) {
+        alert("Please enter a Quiz ID");
+        return;
+    }
+    sessionStorage.setItem("quiz_id", quizId);
     const quizId = sessionStorage.getItem("quiz_id");
     window.location.href = `quiz.html?quiz_id=${quizId}`;
 }
@@ -343,7 +349,7 @@ function startQuiz() {
 async function setupQuizPage() {
     if (!window.location.pathname.endsWith("quiz.html")) return;
 
-    const quizId = sessionStorage.getItem("quiz_id") || localStorage.getItem("quiz_id");
+    const quizId = sessionStorage.getItem("quiz_id");
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
