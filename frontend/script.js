@@ -352,7 +352,7 @@ async function setupQuizPage() {
     const user_id = localStorage.getItem("user_id");
 
     if (quizId) {
-        localStorage.setItem("quiz_id", quizId);  // Sync to avoid issues
+        localStorage.setItem("quiz_id", quizId);  
     }
 
     if (!quizId || !user_id) {
@@ -598,6 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCreateQuizPage();
     setupQuestionEditor();
     setupJoinQuizPage();
+    setupQuizPage();
     if (window.location.pathname.endsWith("CreateQuiz.html")) {
         setupCreateQuizPage();
     }
