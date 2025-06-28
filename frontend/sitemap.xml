@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/index.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/login.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/signup.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/CreateQuiz.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/JoinQuiz.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/questions.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/quiz.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/result.html</loc>
+  </url>
+
+  <url>
+    <loc>https://quizzeria-world.netlify.app/leaderboard.html</loc>
+  </url>
+
+</urlset>
