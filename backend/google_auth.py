@@ -18,7 +18,7 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 @router.get("/auth/google/login")
-def login_via_google(request: Request):
+def login_via_google():
     flow = Flow.from_client_secrets_file(
         BASE_DIR / "credentials.json",
         scopes=[
@@ -29,15 +29,16 @@ def login_via_google(request: Request):
         redirect_uri=REDIRECT_URI
     )
     authorization_url, state = flow.authorization_url(prompt='consent')
-
-    request.session["state"] = state
+    
+    # ✅ We no longer use request.session, so just return the redirect
     return RedirectResponse(url=authorization_url)
 
 @router.get("/auth/google/callback")
 def auth_google_callback(request: Request, db: Session = Depends(get_db)):
-    state = request.session.get("state")
+    # ✅ Get the 'state' and 'code' from query parameters instead of session
+    state = request.query_params.get("state")
     if not state:
-        return {"error": "Missing state in session"}
+        return {"error": "Missing state in query"}
 
     flow = Flow.from_client_secrets_file(
         BASE_DIR / "credentials.json",
@@ -50,11 +51,13 @@ def auth_google_callback(request: Request, db: Session = Depends(get_db)):
         redirect_uri=REDIRECT_URI
     )
 
+    # ✅ Exchange code for token
     flow.fetch_token(authorization_response=str(request.url))
 
     credentials = flow.credentials
     request_session = google.auth.transport.requests.Request()
 
+    # ✅ Decode ID token
     id_info = google.oauth2.id_token.verify_oauth2_token(
         id_token=credentials._id_token,
         request=request_session,
@@ -63,10 +66,11 @@ def auth_google_callback(request: Request, db: Session = Depends(get_db)):
 
     email = id_info.get("email")
 
+    # ✅ Check user in DB
     user = db.query(User).filter(User.email == email).first()
+
+    # ✅ Redirect to Netlify frontend with email or error
     FRONTEND_URL = "https://quizzeria-world.netlify.app/login"
-
-
     if user:
         return RedirectResponse(url=f"{FRONTEND_URL}?email={email}")
     else:
