@@ -64,7 +64,7 @@ def auth_google_callback(request: Request, db: Session = Depends(get_db)):
     email = id_info.get("email")
 
     user = db.query(User).filter(User.email == email).first()
-    FRONTEND_URL = "https://quizzeria-world.netlify.app/login.html"
+    FRONTEND_URL = "https://quizzeria-world.netlify.app/login"
 
 
     if user:
