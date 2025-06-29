@@ -64,8 +64,10 @@ def auth_google_callback(request: Request, db: Session = Depends(get_db)):
     email = id_info.get("email")
 
     user = db.query(User).filter(User.email == email).first()
+    FRONTEND_URL = "https://quizzeria-world.netlify.app/login.html"
+
 
     if user:
-        return RedirectResponse(url=f"https://quizzo-backend-086b.onrender.com/frontend/login.html?email={email}")
+        return RedirectResponse(url=f"{FRONTEND_URL}?email={email}")
     else:
-        return RedirectResponse(url="https://quizzo-backend-086b.onrender.com/frontend/login.html?error=not_registered")
+        return RedirectResponse(url=f"{FRONTEND_URL}?error=not_registered")
