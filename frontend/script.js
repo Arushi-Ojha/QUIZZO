@@ -2,9 +2,11 @@
 const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 
 // ==================== AUTH MODULE ===========================
+console.log("👋 Hello from the top of script.js");
 
 
 
+console.log("👋 Hello from the top of signup form");
 
 function setupSignupForm() {
     console.log("🔧 setupLoginForm called");
@@ -33,6 +35,7 @@ function setupSignupForm() {
         }
     });
 }
+console.log("👋 Hello from the top of log in form");
 
 function setupLoginForm() {
     alert("✅ log in page is running");
@@ -99,6 +102,7 @@ function setupLoginForm() {
     });
 
 }
+console.log("👋 Hello from the top of google form");
 
 function setupGoogleLogin() {
     const googleBtn = document.getElementById("google-login");
@@ -159,6 +163,8 @@ function handleGoogleCallback() {
 }
 
 // ==================== QUIZ CREATION MODULE ===========================
+console.log("👋 Hello from the top of create quiz");
+
 function setupCreateQuizPage() {
     const form = document.getElementById("create-quiz-form");
     const quizzesList = document.getElementById("quizzes-list");
@@ -234,6 +240,8 @@ function setupCreateQuizPage() {
 }
 
 // ==================== QUESTION EDITOR MODULE ===========================
+console.log("👋 Hello from the top of questions editor");
+
 function setupQuestionEditor() {
     const form = document.getElementById("create-question");
     const questionInput = document.getElementById("question");
