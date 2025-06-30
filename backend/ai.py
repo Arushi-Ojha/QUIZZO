@@ -24,7 +24,7 @@ async def generate_quiz_questions(title, description, level):
     Output should be in JSON list format with keys: "question", "A", "B", "C", "D", "correct"
     """
 
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-001")
 
     try:
         response = await model.generate_content_async(prompt)
