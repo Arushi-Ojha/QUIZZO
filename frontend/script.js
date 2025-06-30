@@ -696,6 +696,14 @@ document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const aiForm = document.getElementById("ai-quiz-form");
+if (aiForm) {
+  aiForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // your code
+  });
+}
+
   const title = document.getElementById("title").value.trim();
   const description = document.getElementById("description").value.trim();
   const level = document.getElementById("level").value;
