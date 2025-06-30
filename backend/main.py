@@ -8,6 +8,8 @@ from database import SessionLocal, engine, verify_connection
 import models
 import schemas
 from auth import router as auth_router
+from routes import ai_router
+from auth import router as auth
 from google_auth import router as google_auth_router
 from starlette.middleware.sessions import SessionMiddleware
 from routes import quizzes
@@ -54,7 +56,8 @@ app.include_router(submissions.router)
 app.include_router(leaderboard_router)
 app.include_router(quizzes.router)
 app.include_router(publicQuizzes.router)
-
+app.include_router(auth.router)
+app.include_router(ai_router.router)
 
 def get_db():
     db = SessionLocal()

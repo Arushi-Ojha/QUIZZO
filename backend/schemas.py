@@ -42,6 +42,9 @@ class QuizResponse(QuizBase):
     class Config:
         from_attributes = True
 
+class QuizInput(QuizCreate):
+    level: str
+
 # ====================
 # Question Schemas
 # ====================
