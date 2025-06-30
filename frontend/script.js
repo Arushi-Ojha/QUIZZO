@@ -806,7 +806,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupLeaderboardPage();
   } else if (pageMatch("result")) {
     loadResult();
-  }if (pageMatch("ai")) {
+  }else if (pageMatch("ai")) {
   console.log("➡️ This is ai.html");
   setupAIQuizForm();
 }
