@@ -19,9 +19,9 @@ from routes import submissions
 from routes import publicQuizzes
 from google_auth import router as google_auth_router
 
+DATABASE_URL = os.getenv("DATABASE_URL")
 app = FastAPI()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
 
 app.add_middleware(
     CORSMiddleware,
