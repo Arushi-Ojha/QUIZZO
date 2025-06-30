@@ -31,12 +31,13 @@ app.add_middleware(
 )
 
 
-
 app.add_middleware(SessionMiddleware, secret_key="493290581729-21f4h57r8kjunc8bvrmtk4qr3htv0plb.apps.googleusercontent.com")
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
-app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
+if os.getenv("RAILWAY_STATIC_FRONTEND") != "false" and os.path.isdir(FRONTEND_DIR):
+    app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
 @app.on_event("startup")
 def startup_event():
