@@ -728,17 +728,11 @@ async function displayLatestQuizzes() {
 
 document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
+function setupAIQuizForm() {
 document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const aiForm = document.getElementById("ai-quiz-form");
-if (aiForm) {
-  aiForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    // your code
-  });
-}
-
   const title = document.getElementById("title").value.trim();
   const description = document.getElementById("description").value.trim();
   const level = document.getElementById("level").value;
@@ -773,7 +767,7 @@ if (aiForm) {
     statusEl.textContent = "❌ Failed to connect to backend.";
   }
 });
-
+}
 
 // ==================== MAIN ENTRY ===========================
 document.addEventListener("DOMContentLoaded", () => {
@@ -805,7 +799,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setupLeaderboardPage();
   } else if (pageMatch("result")) {
     loadResult();
-  } else {
-    console.log("🟡 No matching route for this page");
-  }
-});
+  }else if (pageMatch("ai")) {
+  setupAIQuizForm();
+    }else {
+        console.log("🟡 No matching route for this page");
+    }
+    });
