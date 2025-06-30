@@ -36,31 +36,48 @@ function setupSignupForm() {
 }
 
 function setupLoginForm() {
+    console.log("🔧 setupLoginForm called");
     const form = document.getElementById("login-form");
-    if (!form){console.warn("🚨 login-form not found"); return;}
+    console.log("🔍 login-form element:", form);
+    if (!form) {
+        console.warn("🚨 login-form not found");
+        return;
+    }
     form.addEventListener("submit", async (event) => {
+        console.log("📝 login-form submit event triggered");
         event.preventDefault();
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
+        console.log("📥 Username:", username, "Password:", password);
         const response = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
         });
-         console.log("✅ login-form found");
+        console.log("✅ login-form found");
         const data = await response.json();
         console.log("🔁 Login response:", data);
         if (response.ok) {
             localStorage.setItem("username", username);
+            console.log("💾 Username stored in localStorage");
             fetch(`${BASE_URL}/user-id-by-username/${username}`)
-                .then(res => res.json())
+                .then(res => {
+                    console.log("🌐 Fetched user-id-by-username");
+                    return res.json();
+                })
                 .then(userData => {
+                    console.log("🆔 userData:", userData);
                     if (userData.user_id) {
                         localStorage.setItem("user_id", userData.user_id);
+                        console.log("💾 user_id stored in localStorage");
                     }
                     fetch(`${BASE_URL}/quizzes/role/${username}`)
-                        .then(roleRes => roleRes.json())
+                        .then(roleRes => {
+                            console.log("🌐 Fetched quizzes/role");
+                            return roleRes.json();
+                        })
                         .then(roleData => {
+                            console.log("🎭 roleData:", roleData);
                             if (roleData.role === "admin") {
                                 window.location.href = "CreateQuiz.html";
                             } else if (roleData.role === "student") {
