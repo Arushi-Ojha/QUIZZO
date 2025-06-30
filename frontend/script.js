@@ -2,6 +2,9 @@
 const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 
 // ==================== AUTH MODULE ===========================
+alert("✅ script.js is running!");
+console.log("✅ JS loaded");
+
 
 function setupSignupForm() {
     const form = document.getElementById("signup-form");
