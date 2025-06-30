@@ -24,13 +24,13 @@ app = FastAPI()
 
 
 app.add_middleware(
-
     CORSMiddleware,
-    allow_origins=["https://686239ea4a386cb19fac84ee--quizzeria-world.netlify.app"], 
+    allow_origins=["https://68624f78fbe20efa5b090ab0--quizzeria-world.netlify.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 app.add_middleware(SessionMiddleware, secret_key="493290581729-21f4h57r8kjunc8bvrmtk4qr3htv0plb.apps.googleusercontent.com")
