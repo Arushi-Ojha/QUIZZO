@@ -1,5 +1,5 @@
 // ==================== BASE URL ===========================
-const BASE_URL = "https://quizzo-backend-086b.onrender.com";
+const BASE_URL = "https://your-backend-name.up.railway.app";
 
 // ==================== AUTH MODULE ===========================
 
