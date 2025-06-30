@@ -1,5 +1,5 @@
 // ==================== BASE URL ===========================
-const BASE_URL = "https://triumphant-commitment.up.railway.app";
+const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 
 // ==================== AUTH MODULE ===========================
 
