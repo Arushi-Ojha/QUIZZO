@@ -752,17 +752,31 @@ if (aiForm) {
 
 // ==================== MAIN ENTRY ===========================
 document.addEventListener("DOMContentLoaded", () => {
-    setupSignupForm();
+  const path = window.location.pathname;
+
+  console.log("✅ script.js running on:", path);
+
+  if (path.endsWith("login.html")) {
+    console.log("➡️ This is login.html");
     setupLoginForm();
     setupGoogleLogin();
     handleGoogleCallback();
+  } else if (path.endsWith("signup.html")) {
+    console.log("➡️ This is signup.html");
+    setupSignupForm();
+  } else if (path.endsWith("CreateQuiz.html")) {
     setupCreateQuizPage();
+  } else if (path.endsWith("editQuestions.html")) {
     setupQuestionEditor();
+  } else if (path.endsWith("join.html")) {
     setupJoinQuizPage();
+  } else if (path.endsWith("quiz.html")) {
     setupQuizPage();
-    if (window.location.pathname.endsWith("CreateQuiz.html")) {
-        setupCreateQuizPage();
-    }
+  } else if (path.endsWith("leaderboard.html")) {
     setupLeaderboardPage();
-    if (window.location.pathname.endsWith("result.html")) loadResult();
+  } else if (path.endsWith("result.html")) {
+    loadResult();
+  } else {
+    console.log("🟡 No matching route for this page");
+  }
 });
