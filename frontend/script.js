@@ -752,29 +752,33 @@ if (aiForm) {
 
 // ==================== MAIN ENTRY ===========================
 document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
-
+  const path = window.location.pathname.toLowerCase();
   console.log("✅ script.js running on:", path);
 
-  if (path.endsWith("login.html")) {
+  // Helper to match both /login and /login.html
+  function pageMatch(name) {
+    return path.endsWith(`/${name}`) || path.endsWith(`/${name}.html`);
+  }
+
+  if (pageMatch("login")) {
     console.log("➡️ This is login.html");
     setupLoginForm();
     setupGoogleLogin();
     handleGoogleCallback();
-  } else if (path.endsWith("signup.html")) {
+  } else if (pageMatch("signup")) {
     console.log("➡️ This is signup.html");
     setupSignupForm();
-  } else if (path.endsWith("CreateQuiz.html")) {
+  } else if (pageMatch("createquiz")) {
     setupCreateQuizPage();
-  } else if (path.endsWith("editQuestions.html")) {
+  } else if (pageMatch("editquestions")) {
     setupQuestionEditor();
-  } else if (path.endsWith("join.html")) {
+  } else if (pageMatch("join")) {
     setupJoinQuizPage();
-  } else if (path.endsWith("quiz.html")) {
+  } else if (pageMatch("quiz")) {
     setupQuizPage();
-  } else if (path.endsWith("leaderboard.html")) {
+  } else if (pageMatch("leaderboard")) {
     setupLeaderboardPage();
-  } else if (path.endsWith("result.html")) {
+  } else if (pageMatch("result")) {
     loadResult();
   } else {
     console.log("🟡 No matching route for this page");
