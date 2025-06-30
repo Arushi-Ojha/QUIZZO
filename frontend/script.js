@@ -693,6 +693,42 @@ async function displayLatestQuizzes() {
 
 document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
+document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const level = document.getElementById("level").value;
+  const time_limit = parseInt(document.getElementById("time_limit").value);
+  const created_by = localStorage.getItem("username");
+
+  if (!created_by) {
+    alert("You must be logged in as an admin to use this feature.");
+    return;
+  }
+
+  const payload = { title, description, level, time_limit, created_by };
+  const statusEl = document.getElementById("status");
+
+  try {
+    statusEl.textContent = "Generating quiz...";
+    const response = await fetch("http://localhost:8000/ai/generate_quiz/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      statusEl.textContent = `✅ Quiz Generated! Quiz ID: ${result.quiz_id}`;
+    } else {
+      statusEl.textContent = `❌ Error: ${result.detail}`;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    statusEl.textContent = "❌ Failed to connect to backend.";
+  }
+});
 
 
 // ==================== MAIN ENTRY ===========================

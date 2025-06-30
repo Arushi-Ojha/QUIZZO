@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generate AI Quiz</title>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>AI Quiz Generator</h1>
+  <form id="ai-quiz-form">
+    <input type="text" id="title" placeholder="Quiz Title" required /><br />
+    <input type="text" id="description" placeholder="Description" required /><br />
+    <select id="level" title="level">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select><br />
+    <input type="number" id="time_limit" placeholder="Time Limit (minutes)" required /><br />
+    <button type="submit">Generate Quiz</button>
+  </form>
+</body>
+</html>
