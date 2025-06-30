@@ -164,14 +164,14 @@ function handleGoogleCallback() {
 
 // ==================== QUIZ CREATION MODULE ===========================
 console.log("👋 Hello from the top of create quiz");
-
-function setupCreateQuizPage() {
-    const aiBtn = document.getElementById("ai-generate-btn");
+const aiBtn = document.getElementById("ai-generate-btn");
     if (aiBtn) {
         aiBtn.addEventListener("click", () => {
             window.location.href = "ai.html";
         });
     }
+
+function setupCreateQuizPage() {
 
     const form = document.getElementById("create-quiz-form");
     const quizzesList = document.getElementById("quizzes-list");
