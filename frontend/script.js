@@ -8,7 +8,6 @@ console.log("✅ JS loaded");
 
 
 function setupSignupForm() {
-    localStorage.clear();
     console.log("🔧 setupLoginForm called");
     const form = document.getElementById("signup-form");
     if (!form){
@@ -37,7 +36,6 @@ function setupSignupForm() {
 }
 
 function setupLoginForm() {
-    localStorage.clear();
     const form = document.getElementById("login-form");
     if (!form){console.warn("🚨 login-form not found"); return;}
     form.addEventListener("submit", async (event) => {
