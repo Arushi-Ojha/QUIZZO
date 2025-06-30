@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-genai.configure(api_key=os.getenv("AIzaSyDMgrB3SaJWFkN2ZgKyYKq7fiK3UYsDEmU"))
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def generate_quiz_questions(title, description, level):
     prompt = f"""
