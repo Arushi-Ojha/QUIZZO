@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-REDIRECT_URI = "https://your-backend-name.up.railway.app/auth/google/callback"
+REDIRECT_URI = "https://triumphant-commitment.up.railway.app/auth/google/callback"
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
