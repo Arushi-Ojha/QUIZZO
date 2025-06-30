@@ -13,7 +13,7 @@ from pydantic import BaseModel
 router = APIRouter()
 
 @router.post("/ai/generate_quiz/")
-def generate_quiz(data: QuizInput, db: Session = Depends(get_db)):
+async def generate_quiz(data: QuizInput, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == data.created_by).first()
     if not user or user.role != "admin":
         raise HTTPException(status_code=403, detail="Only admin can generate quizzes")
@@ -29,7 +29,7 @@ def generate_quiz(data: QuizInput, db: Session = Depends(get_db)):
     db.refresh(quiz)
 
     # AI question generation
-    questions = generate_quiz_questions(data.title, data.description, data.level)
+    questions = await generate_quiz_questions(data.title, data.description, data.level)
 
     for q in questions:
         db.add(Question(

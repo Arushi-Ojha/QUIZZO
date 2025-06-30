@@ -1,12 +1,12 @@
-
 import google.generativeai as genai
 import os
+import json
 from dotenv import load_dotenv
-load_dotenv()
 
+load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-def generate_quiz_questions(title, description, level):
+async def generate_quiz_questions(title, description, level):
     prompt = f"""
     Generate 20 MCQs based on the following quiz:
     Title: {title}
@@ -25,14 +25,10 @@ def generate_quiz_questions(title, description, level):
     """
 
     model = genai.GenerativeModel(model_name="models/gemini-pro")
-    response = model.generate_content(prompt)
-    
-    print("🔍 Raw Gemini Response:", response.text)
 
-    # Extract JSON from response
     try:
-        import json
+        response = await model.generate_content_async(prompt)
         return json.loads(response.text.strip())
     except Exception as e:
-        print("Error:", e)
+        print("❌ Gemini API Error:", e)
         return []
