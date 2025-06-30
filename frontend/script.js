@@ -721,6 +721,7 @@ document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => 
     const result = await response.json();
     if (response.ok) {
       statusEl.textContent = `✅ Quiz Generated! Quiz ID: ${result.quiz_id}`;
+      window.location.href = "CreateQuiz.html";
     } else {
       statusEl.textContent = `❌ Error: ${result.detail}`;
     }
