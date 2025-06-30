@@ -28,8 +28,12 @@ async def generate_quiz_questions(title, description, level):
 
 
     try:
-        response = await model.generate_content_async(prompt)
-        return json.loads(response.text.strip())
+        response = model.generate_content(prompt)
+        print("🔵 Gemini raw response:")
+        print(response.text)  # Log the full response for debugging
+
+        import json
+        return json.loads(response.text.strip())  # This will fail if not proper JSON
     except Exception as e:
         print("❌ Gemini API Error:", e)
         return []
