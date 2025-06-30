@@ -24,7 +24,7 @@ def generate_quiz_questions(title, description, level):
     Output should be in JSON list format with keys: "question", "A", "B", "C", "D", "correct"
     """
 
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel(model_name="models/gemini-pro")
     response = model.generate_content(prompt)
     
     print("🔍 Raw Gemini Response:", response.text)
