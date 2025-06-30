@@ -27,6 +27,8 @@ def generate_quiz_questions(title, description, level):
     model = genai.GenerativeModel("gemini-pro")
     response = model.generate_content(prompt)
     
+    print("🔍 Raw Gemini Response:", response.text)
+
     # Extract JSON from response
     try:
         import json
