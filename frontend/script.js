@@ -7,8 +7,12 @@ console.log("✅ JS loaded");
 
 
 function setupSignupForm() {
+    console.log("🔧 setupLoginForm called");
     const form = document.getElementById("signup-form");
-    if (!form) return;
+    if (!form){
+        
+         return;
+        }
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const username = document.getElementById("signup-username").value;
@@ -32,7 +36,7 @@ function setupSignupForm() {
 
 function setupLoginForm() {
     const form = document.getElementById("login-form");
-    if (!form) return;
+    if (!form){console.warn("🚨 login-form not found"); return;}
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const username = document.getElementById("login-username").value;
@@ -42,7 +46,9 @@ function setupLoginForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
         });
+         console.log("✅ login-form found");
         const data = await response.json();
+        console.log("🔁 Login response:", data);
         if (response.ok) {
             localStorage.setItem("username", username);
             fetch(`${BASE_URL}/user-id-by-username/${username}`)
