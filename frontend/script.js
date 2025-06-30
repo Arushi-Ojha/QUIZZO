@@ -596,7 +596,7 @@ async function displayLatestQuizzes() {
             quizDiv.classList.add("quiz-card");
             quizDiv.innerHTML = `
       <style>
-  .quiz-card {
+      .quiz-card {
     background: var(--card-bg, #D9E2EC);
     border: 1px solid var(--border-color, #B0C4D9);
     border-radius: 1.2rem;
