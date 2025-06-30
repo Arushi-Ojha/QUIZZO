@@ -24,7 +24,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://quizzeria-world.netlify.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
