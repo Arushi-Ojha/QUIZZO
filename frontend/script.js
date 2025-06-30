@@ -166,6 +166,13 @@ function handleGoogleCallback() {
 console.log("👋 Hello from the top of create quiz");
 
 function setupCreateQuizPage() {
+    const aiBtn = document.getElementById("ai-generate-btn");
+    if (aiBtn) {
+        aiBtn.addEventListener("click", () => {
+            window.location.href = "ai.html";
+        });
+    }
+
     const form = document.getElementById("create-quiz-form");
     const quizzesList = document.getElementById("quizzes-list");
     const username = localStorage.getItem("username");
