@@ -806,9 +806,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setupLeaderboardPage();
   } else if (pageMatch("result")) {
     loadResult();
-  }else if (pageMatch("ai")) {
+  }if (pageMatch("ai")) {
+  console.log("➡️ This is ai.html");
   setupAIQuizForm();
-    }else {
+}
+else {
         console.log("🟡 No matching route for this page");
     }
     });
