@@ -25,7 +25,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://68624f78fbe20efa5b090ab0--quizzeria-world.netlify.app"], 
+    allow_origins=["https://*--quizzeria-world.netlify.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
