@@ -5,6 +5,7 @@ const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 alert("✅ script.js is running!");
 console.log("✅ JS loaded");
 
+localStorage.clear();
 
 function setupSignupForm() {
     console.log("🔧 setupLoginForm called");
