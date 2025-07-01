@@ -11,7 +11,7 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 HEADERS = {
     "Authorization": f"Bearer {OPENROUTER_API_KEY}",
     "Content-Type": "application/json",
-    "HTTP-Referer": "https://quizzeria-world.netlify.app",  # your Netlify frontend
+    "HTTP-Referer": "https://quizzeria-world.netlify.app",
     "X-Title": "Quizzeria AI Generator"
 }
 
@@ -29,7 +29,7 @@ async def generate_quiz_questions(title, description, level):
     prompt = f"""
 You are an expert quiz maker.
 
-Generate exactly 20 multiple-choice questions based on the quiz below.
+Generate exactly 10 multiple-choice questions based on the quiz below.
 
 Quiz Title: {title}
 Description: {description}
@@ -40,11 +40,11 @@ Each question must include:
 - "A", "B", "C", "D": four options
 - "correct": one of "A", "B", "C", or "D"
 
-Respond with ONLY a JSON list of 20 dictionaries. Do NOT include explanation, intro, or markdown formatting.
+Respond with ONLY a JSON list of 10 dictionaries. Do NOT include explanation, intro, or markdown formatting.
     """
 
     body = {
-        "model": "mistralai/mistral-7b-instruct",  # You can switch this to another OpenRouter model
+        "model": "mistralai/mistral-7b-instruct",
         "messages": [
             {"role": "system", "content": "You are an AI quiz generator."},
             {"role": "user", "content": prompt}
@@ -56,7 +56,6 @@ Respond with ONLY a JSON list of 20 dictionaries. Do NOT include explanation, in
         response.raise_for_status()
         content = response.json()["choices"][0]["message"]["content"]
 
-        # Try parsing cleanly first
         try:
             return json.loads(content)
         except:
