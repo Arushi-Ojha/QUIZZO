@@ -2,14 +2,9 @@
 const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 
 // ==================== AUTH MODULE ===========================
-console.log("👋 Hello from the top of script.js");
 
-
-
-console.log("👋 Hello from the top of signup form");
 
 function setupSignupForm() {
-    console.log("🔧 setupLoginForm called");
     const form = document.getElementById("signup-form");
     if (!form){
         
@@ -35,11 +30,9 @@ function setupSignupForm() {
         }
     });
 }
-console.log("👋 Hello from the top of log in form");
+
 
 function setupLoginForm() {
-    alert("✅ log in page is running");
-    console.log("🔧 setupLoginForm called");
     const form = document.getElementById("login-form");
     console.log("🔍 login-form element:", form);
     if (!form) {
@@ -47,40 +40,30 @@ function setupLoginForm() {
         return;
     }
     form.addEventListener("submit", async (event) => {
-        console.log("📝 login-form submit event triggered");
         event.preventDefault();
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
-        console.log("📥 Username:", username, "Password:", password);
         const response = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
         });
-        console.log("✅ login-form found");
         const data = await response.json();
-        console.log("🔁 Login response:", data);
         if (response.ok) {
             localStorage.setItem("username", username);
-            console.log("💾 Username stored in localStorage");
             fetch(`${BASE_URL}/user-id-by-username/${username}`)
                 .then(res => {
-                    console.log("🌐 Fetched user-id-by-username");
                     return res.json();
                 })
                 .then(userData => {
-                    console.log("🆔 userData:", userData);
                     if (userData.user_id) {
                         localStorage.setItem("user_id", userData.user_id);
-                        console.log("💾 user_id stored in localStorage");
                     }
                     fetch(`${BASE_URL}/quizzes/role/${username}`)
                         .then(roleRes => {
-                            console.log("🌐 Fetched quizzes/role");
                             return roleRes.json();
                         })
                         .then(roleData => {
-                            console.log("🎭 roleData:", roleData);
                             if (roleData.role === "admin") {
                                 window.location.href = "CreateQuiz.html";
                             } else if (roleData.role === "student") {
@@ -102,7 +85,6 @@ function setupLoginForm() {
     });
 
 }
-console.log("👋 Hello from the top of google form");
 
 function setupGoogleLogin() {
     const googleBtn = document.getElementById("google-login");
@@ -163,7 +145,6 @@ function handleGoogleCallback() {
 }
 
 // ==================== QUIZ CREATION MODULE ===========================
-console.log("👋 Hello from the top of create quiz");
 const aiBtn = document.getElementById("ai-generate-btn");
     if (aiBtn) {
         aiBtn.addEventListener("click", () => {
@@ -246,8 +227,50 @@ function setupCreateQuizPage() {
     }
 }
 
+//======================== AI QUIZ GENERATION MODULE ===========================
+
+function setupAIQuizForm() {
+document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const aiForm = document.getElementById("ai-quiz-form");
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const level = document.getElementById("level").value;
+  const time_limit = parseInt(document.getElementById("time_limit").value);
+  const created_by = localStorage.getItem("username");
+
+  if (!created_by) {
+    alert("If you are not ADMIN! You dont get this feature");
+    return;
+  }
+
+  const payload = { title, description, level, time_limit, created_by };
+  const statusEl = document.getElementById("status");
+
+  try {
+    statusEl.textContent = "AI thinking ...";
+    const response = await fetch(`${BASE_URL}/ai/generate_quiz/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      statusEl.textContent = `AI successfully generated the quiz!`;
+      window.location.href = "CreateQuiz.html";
+    } else {
+      statusEl.textContent = `AI failed to generate quiz: ${result.detail}`;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    statusEl.textContent = "Server Error";
+  }
+});
+}
+
 // ==================== QUESTION EDITOR MODULE ===========================
-console.log("👋 Hello from the top of questions editor");
 
 function setupQuestionEditor() {
     const form = document.getElementById("create-question");
@@ -266,20 +289,17 @@ function setupQuestionEditor() {
     }
     async function loadQuestions() {
     questionsList.innerHTML = "";
-    console.log("🧠 quiz_id from localStorage:", quiz_id);
     
     try {
         const response = await fetch(`${BASE_URL}/questions/quiz/${quiz_id}`);
-        console.log("🌐 Fetch status:", response.status);
 
         if (!response.ok) {
             const err = await response.text();
-            console.error("❌ API Error:", err);
+            console.error("API galat hai bkl:", err);
             return;
         }
 
         const questions = await response.json();
-        console.log("✅ Questions fetched:", questions);
 
         if (questions.length === 0) {
             questionsList.innerHTML = "<p>No questions found.</p>";
@@ -300,7 +320,7 @@ function setupQuestionEditor() {
             questionsList.appendChild(div);
         });
     } catch (error) {
-        console.error("💥 Error loading questions:", error);
+        console.error("questions nahi mila mereko!:", error);
     }
 }
 
@@ -391,7 +411,7 @@ async function fetchQuizDetails() {
         document.getElementById("quiz-time").textContent = `Time Limit: ${quiz.time_limit} minutes`;
         sessionStorage.setItem("quiz_id", quizId);
     } catch (error) {
-        console.error("Error fetching quiz:", error);
+        console.error("quiz nahi mila mereko:", error);
         alert("Server error");
     }
 }
@@ -417,24 +437,23 @@ async function setupQuizPage() {
         return;
     }
 
-    console.log("Using quiz_id:", quizId);
 
     try {
         const checkRes = await fetch(`${BASE_URL}/results/${user_id}/${quizId}`);
         if (checkRes.ok) {
-            alert("You've already completed this quiz.");
+            alert("You already answered this quiz. Redirecting you to your score...");
             window.location.href = "result.html";
             return;
         }
     } catch (err) {
         if (err instanceof TypeError || err.message.includes("Failed to fetch")) {
-            alert("Unable to connect to server. Please check your backend.");
+            alert("Server Failure");
             return;
         }
     }
     const questionsContainer = document.getElementById("questions");
     if (!questionsContainer) {
-        alert("Questions container not found in HTML!");
+        alert("Question's container disappeared?!");
         return;
     }
     let questions = [];
@@ -467,21 +486,20 @@ async function setupQuizPage() {
         try {
             const res = await fetch(`${BASE_URL}/questions/quiz/${quizId}`);
             if (!res.ok) {
-                console.error("Failed to fetch questions. Status:", res.status);
-                alert("Could not load questions: " + res.status);
+                console.error("No Questions. Status:", res.status);
+                alert("No Questions: " + res.status);
                 return;
             }
             questions = await res.json();
-            console.log("Fetched questions:", questions);
             totalQuestions = questions.length;
         } catch (err) {
-            console.error("Error loading questions:", err);
-            alert("Error loading quiz questions.");
+            console.error("Error aa gaya:", err);
+            alert("Server Error");
             return;
         }
 
     } catch (err) {
-        alert("Error loading quiz questions.");
+        alert("Server Error");
         return;
     }
     try {
@@ -489,11 +507,11 @@ async function setupQuizPage() {
         const quiz = await quizRes.json();
         timeLimit = quiz.time_limit * 60;
     } catch (err) {
-        console.warn("Could not fetch quiz time limit. Using default.");
+        console.warn("Quiz time gayab?! wtf, using default value!");
     }
     function renderQuestion() {
         if (!questions[currentQuestion]) {
-            alert("⚠️ Question data is missing.");
+            alert("Data Missing");
             return;
         }
         const q = questions[currentQuestion];
@@ -553,7 +571,7 @@ async function setupQuizPage() {
         clearInterval(timerInterval);
         const endTime = Date.now();
         const timeTaken = Math.floor((endTime - startTime) / 1000);
-        const score = Math.round((((timeTaken / timeLimit) * 100) + ((correctAnswers / totalQuestions) * 100)) / 2);
+        //const score = Math.round((((timeTaken / timeLimit) * 100) + ((correctAnswers / totalQuestions) * 100)) / 2);
         fetch(`${BASE_URL}/results/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -568,15 +586,15 @@ async function setupQuizPage() {
         })
             .then(res => res.json())
             .then(data => {
-                alert(`✅ Quiz Submitted! Your Score: ${score}`);
+                alert(`Quiz Finished! Redirecting to scores...: ${score}`);
                 localStorage.removeItem("currentQuestion");
                 localStorage.removeItem("correctAnswers");
                 localStorage.removeItem("startTime");
                 window.location.href = "result.html";
             })
             .catch(err => {
-                console.error("Error submitting result:", err);
-                alert("Error submitting result");
+                console.error("Result not submitted", err);
+                alert("Result not submitted");
             });
     }
     renderQuestion();
@@ -588,21 +606,21 @@ async function loadResult() {
     const user_id = localStorage.getItem("user_id");
     const quizId = localStorage.getItem("quiz_id");
     if (!user_id || !quizId) {
-        alert("Missing user or quiz information.");
+        alert("missing user OR maybe quiz");
         return;
     }
     try {
         const res = await fetch(`${BASE_URL}/results/${user_id}/${quizId}`);
-        if (!res.ok) throw new Error("Result not found.");
+        if (!res.ok) throw new Error("Results disappeared");
         const data = await res.json();
-        document.getElementById("username").textContent = `👤 User ID: ${user_id}`;
-        document.getElementById("quiz-id").textContent = `📝 Quiz ID: ${quizId}`;
-        document.getElementById("score").textContent = `✅ Score: ${data.score}`;
-        document.getElementById("total-questions").textContent = `📊 Total Questions: ${data.total_questions}`;
-        document.getElementById("submitted-at").textContent = `📅 Submitted At: ${new Date(data.submitted_at).toLocaleString()}`;
+        document.getElementById("username").textContent = `User ID: ${user_id}`;
+        document.getElementById("quiz-id").textContent = `Quiz ID: ${quizId}`;
+        document.getElementById("score").textContent = `Score: ${data.score}`;
+        document.getElementById("total-questions").textContent = `Total Questions: ${data.total_questions}`;
+        document.getElementById("submitted-at").textContent = `Submitted At: ${new Date(data.submitted_at).toLocaleString()}`;
     } catch (err) {
         console.error(err);
-        alert("Could not load result.");
+        alert("Result disappeared");
     }
 }
 
@@ -618,7 +636,7 @@ function setupLeaderboardPage() {
     async function fetchLeaderboard() {
         try {
             const res = await fetch(`${BASE_URL}/leaderboard/${quizId}`);
-            if (!res.ok) throw new Error("Failed to fetch leaderboard");
+            if (!res.ok) throw new Error("No Leaderboard");
             const data = await res.json();
             leaderboardBody.innerHTML = "";
             data.forEach((entry, index) => {
@@ -633,7 +651,7 @@ function setupLeaderboardPage() {
                 leaderboardBody.appendChild(row);
             });
         } catch (err) {
-            console.error("Error:", err.message);
+            console.error("Server Error:", err.message);
         }
     }
     fetchLeaderboard();
@@ -735,7 +753,7 @@ async function displayLatestQuizzes() {
 
                 const username = localStorage.getItem("username");
                 if (!username) {
-                    alert("Please login or register to take the quiz.");
+                    alert("If no Log in , No one is taking Quiz");
                     window.location.href = "login.html";
                 } else {
                     localStorage.setItem("selected_quiz_id", quizId);
@@ -746,71 +764,26 @@ async function displayLatestQuizzes() {
 
 
     } catch (error) {
-        console.error("Error fetching latest quizzes:", error);
+        console.error("Recent Quizzes gayab", error);
     }
 }
 
-document.addEventListener("DOMContentLoaded", displayLatestQuizzes);
 
-function setupAIQuizForm() {
-document.getElementById("ai-quiz-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const aiForm = document.getElementById("ai-quiz-form");
-  const title = document.getElementById("title").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const level = document.getElementById("level").value;
-  const time_limit = parseInt(document.getElementById("time_limit").value);
-  const created_by = localStorage.getItem("username");
-
-  if (!created_by) {
-    alert("You must be logged in as an admin to use this feature.");
-    return;
-  }
-
-  const payload = { title, description, level, time_limit, created_by };
-  const statusEl = document.getElementById("status");
-
-  try {
-    statusEl.textContent = "Generating quiz...";
-    const response = await fetch(`${BASE_URL}/ai/generate_quiz/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      statusEl.textContent = `✅ Quiz Generated! Quiz ID: ${result.quiz_id}`;
-      window.location.href = "CreateQuiz.html";
-    } else {
-      statusEl.textContent = `❌ Error: ${result.detail}`;
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    statusEl.textContent = "❌ Failed to connect to backend.";
-  }
-});
-}
 
 // ==================== MAIN ENTRY ===========================
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname.toLowerCase();
-  console.log("✅ script.js running on:", path);
-
-  // Helper to match both /login and /login.html
   function pageMatch(name) {
     return path.endsWith(`/${name}`) || path.endsWith(`/${name}.html`);
   }
-
   if (pageMatch("login")) {
-    console.log("➡️ This is login.html");
     setupLoginForm();
     setupGoogleLogin();
     handleGoogleCallback();
   } else if (pageMatch("signup")) {
-    console.log("➡️ This is signup.html");
     setupSignupForm();
+  } else if (pageMatch("landingpage")) {
+    displayLatestQuizzes();
   } else if (pageMatch("createquiz")) {
     setupCreateQuizPage();
   } else if (pageMatch("questions")) {
@@ -824,10 +797,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (pageMatch("result")) {
     loadResult();
   }else if (pageMatch("ai")) {
-  console.log("➡️ This is ai.html");
   setupAIQuizForm();
+}else {
+    console.log("No matching route for this page");
 }
-else {
-        console.log("🟡 No matching route for this page");
-    }
-    });
+});
