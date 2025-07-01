@@ -649,7 +649,7 @@ async function displayLatestQuizzes() {
         const quizzes = await response.json();
 
         const container = document.getElementById("latest-quizzes-container");
-        container.innerHTML = "";
+        container.innerHTML = "MORE QUIZZES";
 
         quizzes.forEach(quiz => {
             const quizDiv = document.createElement("div");
