@@ -15,7 +15,6 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 REDIRECT_URI = "https://triumphant-commitment-production.up.railway.app/auth/google/callback"
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
-# ✅ Load JSON directly from environment variable
 GOOGLE_CLIENT_SECRET_JSON = os.getenv("GOOGLE_CLIENT_SECRET_JSON")
 if not GOOGLE_CLIENT_SECRET_JSON:
     raise RuntimeError("Missing GOOGLE_CLIENT_SECRET_JSON environment variable")

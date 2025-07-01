@@ -4,9 +4,9 @@ import sqlalchemy.exc
 import urllib.parse
 
 username = "root"
-host = "mysql.railway.internal"
-port = 3306
-database = "quiz_db"
+host = "gondola.proxy.rlwy.net"
+port = 39207
+database = "railway"
 password = "VxGjDwLfTbiGhkTGfqPthepCxckgVjWI"
 encoded_password = urllib.parse.quote_plus(password)
 
