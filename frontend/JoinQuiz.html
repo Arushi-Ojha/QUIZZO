@@ -201,21 +201,25 @@
 
 <body>
 <h2>Join a Quiz</h2>
-<div id="search-container">
-<input type="text" id="search-input" placeholder="Search quizzes..." />
-<button id="search-button">Search</button>
+<div class="flex flex-col md:flex-row w-full max-w-6xl gap-8">
+  <div class="md:w-3/4 flex flex-col items-center md:items-start order-2 md:order-1">
+    <div id="search-container" class="w-full max-w-xs">
+      <input type="text" id="search-input" placeholder="Search quizzes..." />
+      <button id="search-button" class="mt-4 w-full max-w-xs">Search</button>
+    </div>
+    <div id="results" class="w-full max-w-xs mt-6"></div>
+  </div>
+  <div class="md:w-1/4 flex flex-col items-center md:items-start order-1 md:order-2">
+    <input type="text" id="quiz-id-input" placeholder="Enter Quiz ID" aria-label="Enter Quiz ID" />
+    <button type="button" onclick="fetchQuizDetails()" aria-label="Submit Quiz ID">Submit</button>
+    <section id="quiz-info-section" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" role="region" aria-label="Quiz Information" class="flex flex-col gap-4 w-full max-w-md">
+      <h3 id="quiz-title"></h3>
+      <p id="quiz-desc"></p>
+      <p id="quiz-time"></p>
+      <button type="button" onclick="startQuiz()" aria-label="Start Quiz">Start Quiz</button>
+    </section>
+  </div>
 </div>
-
-<div id="results"></div>
-<input type="text" id="quiz-id-input" placeholder="Enter Quiz ID" aria-label="Enter Quiz ID" />
-<button type="button" onclick="fetchQuizDetails()" aria-label="Submit Quiz ID">Submit</button>
-
-<section id="quiz-info-section" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" role="region" aria-label="Quiz Information">
-  <h3 id="quiz-title"></h3>
-  <p id="quiz-desc"></p>
-  <p id="quiz-time"></p>
-  <button type="button" onclick="startQuiz()" aria-label="Start Quiz">Start Quiz</button>
-</section>
 <script src="script.js"></script>
 </body>
 
