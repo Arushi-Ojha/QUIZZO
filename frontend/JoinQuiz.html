@@ -1,216 +1,222 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Join Quiz - QUIZZERIA</title>
-  <link href="resources/favicoon-removebg-preview.png" rel="icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --primary: #3B6790;
-      --secondary: #23486A;
-      --accent: #EFB036;
-      --text-light: #4C7B8B;
-      --text-muted: #7A9BBF;
-      --bg-light: #F5F7FA;
-      --card-bg: #D9E2EC;
-      --border-color: #B0C4D9;
-    }
+<meta charset="UTF-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Join Quiz - QUIZZERIA</title>
+<link href="resources/favicoon-removebg-preview.png" rel="icon" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;500;700&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --primary: #3B6790;
+    --secondary: #23486A;
+    --accent: #EFB036;
+    --text-light: #4C7B8B;
+    --text-muted: #7A9BBF;
+    --bg-light: #F5F7FA;
+    --card-bg: #D9E2EC;
+    --border-color: #B0C4D9;
+  }
 
-    body {
-      font-family: "Poppins", sans-serif;
-      background: var(--bg-light);
-      color: var(--primary);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-user-select: none;
-      user-select: none;
-      min-height: 100vh;
-      padding: 2rem 1rem 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  body {
+    font-family: "Poppins", sans-serif;
+    background: var(--bg-light);
+    color: var(--primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    user-select: none;
+    min-height: 100vh;
+    padding: 2rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.8rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    text-shadow: 1.5px 1.5px 4px rgba(75, 123, 139, 0.8);
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+  }
+
+  input[type="text"] {
+    font-family: "Poppins", sans-serif;
+    color: var(--primary);
+    border: 2.5px solid var(--accent);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-user-select: none;
+    user-select: text;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-bottom: 1.8rem;
+    display: block;
+    background-color: var(--bg-light);
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 8px rgba(35, 72, 106, 0.6);
+    outline: none;
+    background-color: var(--bg-light);
+  }
+
+  button {
+    background: var(--accent);
+    color: var(--bg-light);
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    border: none;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(239, 176, 54, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 3px #00000088;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  button:hover,
+  button:focus {
+    background: var(--secondary);
+    box-shadow: 0 14px 28px rgba(35, 72, 106, 0.85);
+    outline: none;
+    color: var(--bg-light);
+  }
+
+  #quiz-info-section {
+    max-width: 400px;
+    width: 100%;
+    background: var(--card-bg);
+    border-radius: 2rem;
+    box-shadow: 0 14px 36px rgba(35, 72, 106, 0.3);
+    padding: 2rem 2.5rem;
+    color: var(--primary);
+    font-family: "Poppins", sans-serif;
+    -webkit-user-select: text;
+    user-select: text;
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+
+  #quiz-info-section h3 {
+    font-family: "Pacifico", cursive;
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(75, 123, 139, 0.8);
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  #quiz-info-section p {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    color: rgba(35, 72, 106, 0.87);
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  #quiz-info-section button {
+    background: var(--secondary);
+    color: var(--bg-light);
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    border: none;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(35, 72, 106, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: "Pacifico", cursive;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 3px #00000088;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #quiz-info-section button:hover,
+  #quiz-info-section button:focus {
+    background: var(--primary);
+    box-shadow: 0 14px 28px rgba(59, 103, 144, 0.85);
+    outline: none;
+    color: var(--bg-light);
+  }
+
+  @media (max-width: 480px) {
     h2 {
-      font-family: "Pacifico", cursive;
-      font-size: 2.8rem;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      text-shadow: 1.5px 1.5px 4px rgba(75, 123, 139, 0.8);
-      -webkit-user-select: none;
-      user-select: none;
-      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
     }
 
     input[type="text"] {
-      font-family: "Poppins", sans-serif;
-      color: var(--primary);
-      border: 2.5px solid var(--accent);
-      border-radius: 1rem;
-      padding: 0.75rem 1rem;
-      font-size: 1.1rem;
-      outline-offset: 2px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      -webkit-user-select: none;
-      user-select: text;
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
-      margin-bottom: 1.8rem;
-      display: block;
-      background-color: var(--bg-light);
-    }
-
-    input[type="text"]:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 8px rgba(35, 72, 106, 0.6);
-      outline: none;
-      background-color: var(--bg-light);
+      font-size: 1.05rem;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.5rem;
     }
 
     button {
-      background: var(--accent);
-      color: var(--bg-light);
-      font-weight: 700;
-      font-size: 1.3rem;
-      padding: 1rem 0;
-      border: none;
-      border-radius: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgba(239, 176, 54, 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: "Pacifico", cursive;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 3px #00000088;
-      -webkit-user-select: none;
-      user-select: none;
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 2rem;
-      display: block;
-    }
-
-    button:hover,
-    button:focus {
-      background: var(--secondary);
-      box-shadow: 0 14px 28px rgba(35, 72, 106, 0.85);
-      outline: none;
-      color: var(--bg-light);
+      font-size: 1.15rem;
+      padding: 0.85rem 0;
+      margin-bottom: 1.5rem;
     }
 
     #quiz-info-section {
-      max-width: 400px;
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 2rem;
-      box-shadow: 0 14px 36px rgba(35, 72, 106, 0.3);
-      padding: 2rem 2.5rem;
-      color: var(--primary);
-      font-family: "Poppins", sans-serif;
-      -webkit-user-select: text;
-      user-select: text;
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 0 auto;
+      padding: 1.5rem 2rem;
     }
 
     #quiz-info-section h3 {
-      font-family: "Pacifico", cursive;
-      font-size: 1.8rem;
-      color: var(--accent);
-      margin: 0;
-      text-shadow: 1px 1px 3px rgba(75, 123, 139, 0.8);
-      -webkit-user-select: none;
-      user-select: none;
+      font-size: 1.5rem;
     }
 
     #quiz-info-section p {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin: 0;
-      color: rgba(35, 72, 106, 0.87);
-      -webkit-user-select: text;
-      user-select: text;
+      font-size: 1rem;
     }
-
-    #quiz-info-section button {
-      background: var(--secondary);
-      color: var(--bg-light);
-      font-weight: 700;
-      font-size: 1.2rem;
-      padding: 0.8rem 0;
-      border: none;
-      border-radius: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgba(35, 72, 106, 0.7);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      font-family: "Pacifico", cursive;
-      letter-spacing: 0.06em;
-      text-shadow: 0 0 3px #00000088;
-      -webkit-user-select: none;
-      user-select: none;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    #quiz-info-section button:hover,
-    #quiz-info-section button:focus {
-      background: var(--primary);
-      box-shadow: 0 14px 28px rgba(59, 103, 144, 0.85);
-      outline: none;
-      color: var(--bg-light);
-    }
-
-    @media (max-width: 480px) {
-      h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
-      }
-
-      input[type="text"] {
-        font-size: 1.05rem;
-        padding: 0.7rem 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      button {
-        font-size: 1.15rem;
-        padding: 0.85rem 0;
-        margin-bottom: 1.5rem;
-      }
-
-      #quiz-info-section {
-        padding: 1.5rem 2rem;
-      }
-
-      #quiz-info-section h3 {
-        font-size: 1.5rem;
-      }
-
-      #quiz-info-section p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
-  <h2>Join a Quiz</h2>
-  <input type="text" id="quiz-id-input" placeholder="Enter Quiz ID" aria-label="Enter Quiz ID" />
-  <button type="button" onclick="fetchQuizDetails()" aria-label="Submit Quiz ID">Submit</button>
+<h2>Join a Quiz</h2>
+<div id="search-container">
+<input type="text" id="search-input" placeholder="Search quizzes..." />
+<button id="search-button">Search</button>
+</div>
 
-  <section id="quiz-info-section" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" role="region" aria-label="Quiz Information">
-    <h3 id="quiz-title"></h3>
-    <p id="quiz-desc"></p>
-    <p id="quiz-time"></p>
-    <button type="button" onclick="startQuiz()" aria-label="Start Quiz">Start Quiz</button>
-  </section>
-  <script src="script.js"></script>
+<div id="results"></div>
+<input type="text" id="quiz-id-input" placeholder="Enter Quiz ID" aria-label="Enter Quiz ID" />
+<button type="button" onclick="fetchQuizDetails()" aria-label="Submit Quiz ID">Submit</button>
+
+<section id="quiz-info-section" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" role="region" aria-label="Quiz Information">
+  <h3 id="quiz-title"></h3>
+  <p id="quiz-desc"></p>
+  <p id="quiz-time"></p>
+  <button type="button" onclick="startQuiz()" aria-label="Start Quiz">Start Quiz</button>
+</section>
+<script src="script.js"></script>
 </body>
 
 </html>

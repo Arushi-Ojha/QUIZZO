@@ -390,6 +390,76 @@ questionsList.addEventListener("click", async (e) => {
 }
 
 // ==================== QUIZ JOIN & PLAY MODULE ===========================
+function setupSearchBar() {
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
+  const resultsDiv = document.getElementById("results");
+
+  let lastQuery = "";
+
+  if (!searchInput || !searchButton || !resultsDiv) {
+    console.warn("Search bar elements not found on this page.");
+    return;
+  }
+
+  searchInput.addEventListener("input", async () => {
+    const query = searchInput.value.trim();
+
+    if (query.length >= 4 && query !== lastQuery) {
+      lastQuery = query;
+
+      try {
+        const response = await fetch(`${BASE_URL}/search-quizzes/?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        console.log("Live suggestions:", data);
+      } catch (err) {
+        console.error("Live fetch failed:", err);
+      }
+    }
+  });
+
+  searchButton.addEventListener("click", async () => {
+    const query = searchInput.value.trim();
+    if (query === "") return;
+
+    try {
+      const response = await fetch(`${BASE_URL}/search-quizzes/?q=${encodeURIComponent(query)}`);
+      const quizzes = await response.json();
+
+      resultsDiv.innerHTML = "";
+      if (quizzes.length === 0) {
+        resultsDiv.innerHTML = "<p>No matching quizzes found.</p>";
+      } else {
+        quizzes.forEach((quiz) => {
+          const card = document.createElement("div");
+          card.className = "quiz-card";
+          card.innerHTML = `
+            <h3>${quiz.title}</h3>
+            <p>${quiz.description}</p>
+            <p><strong>Time Limit:</strong> ${quiz.time_limit} mins</p>
+            <p><strong>Quiz ID:</strong> ${quiz.id}</p>
+            <button class="join-btn" data-id="${quiz.id}">Join Quiz</button>
+          `;
+          resultsDiv.appendChild(card);
+        });
+
+        document.querySelectorAll(".join-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const quizId = btn.getAttribute("data-id");
+            localStorage.setItem("quiz_id", quizId);
+            window.location.href = "quiz.html";
+          });
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+      resultsDiv.innerHTML = "<p>Error fetching search results.</p>";
+    }
+  });
+}
+
+
+
 function setupJoinQuizPage() {
 const fetchBtn = document.getElementById("fetch-quiz-btn");
 if (!fetchBtn) return;
@@ -788,8 +858,9 @@ displayLatestQuizzes();
 setupCreateQuizPage();
 } else if (pageMatch("questions")) {
 setupQuestionEditor();
-} else if (pageMatch("join")) {
+} else if (pageMatch("joinquiz")) {
 setupJoinQuizPage();
+setupSearchBar();
 } else if (pageMatch("quiz")) {
 setupQuizPage();
 } else if (pageMatch("leaderboard")) {
