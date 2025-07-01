@@ -180,14 +180,40 @@
         margin: 1.5rem auto 2rem auto;
       }
     }
+    button[type="button"] {
+      background: var(--secondary);
+      color: var(--bg-light);
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(35, 72, 106, 0.4);
+      font-family: "Outfit", sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      align-self: center;
+      max-width: 200px;
+      -webkit-user-select:none;
+      user-select: none;
+    }
+
+    button[type="button"]:hover,
+    button[type="button"]:focus {
+      background: var(--primary);
+      color: var(--bg-light);
+      box-shadow: 0 0 30px rgba(59, 103, 144, 0.6);
+      outline: none;
+    }
+
   </style>
 </head>
 <body class="select-none min-h-screen p-8 pt-6 flex flex-col items-center">
   <script src="script.js"></script>
   <h2>Create Quizzes</h2>
-  <button id="ai-generate-btn" class="mb-4 px-4 py-2 bg-secondary text-white rounded-lg shadow-md hover:bg-primary transition-colors duration-300">
-  GENERATE QUIZ USING AI
-</button>
+ <button type="button" id="ai-generate-btn" class="mb-4 px-4 py-2 bg-secondary text-white rounded-lg shadow-md hover:bg-primary transition-colors duration-300">GENERATE AI QUIZ</button>
   <form id="create-quiz-form" autocomplete="off" novalidate>
     <label for="quiz-title">Title:</label>
     <input type="text" id="quiz-title" name="title" required />
