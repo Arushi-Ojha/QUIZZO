@@ -271,7 +271,6 @@ function setupQuestionEditor() {
     try {
         const response = await fetch(`${BASE_URL}/questions/quiz/${quiz_id}`);
         console.log("🌐 Fetch status:", response.status);
-        console.log("📦 Questions fetched from API:", questions);
 
         if (!response.ok) {
             const err = await response.text();
