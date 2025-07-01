@@ -267,10 +267,11 @@ function setupQuestionEditor() {
     async function loadQuestions() {
     questionsList.innerHTML = "";
     console.log("🧠 quiz_id from localStorage:", quiz_id);
-
+    
     try {
         const response = await fetch(`${BASE_URL}/questions/quiz/${quiz_id}`);
         console.log("🌐 Fetch status:", response.status);
+        console.log("📦 Questions fetched from API:", questions);
 
         if (!response.ok) {
             const err = await response.text();
@@ -417,7 +418,7 @@ async function setupQuizPage() {
         return;
     }
 
-    console.log("Using quiz_id:", quizId); // Optional debug
+    console.log("Using quiz_id:", quizId);
 
     try {
         const checkRes = await fetch(`${BASE_URL}/results/${user_id}/${quizId}`);
@@ -649,7 +650,6 @@ async function displayLatestQuizzes() {
         const quizzes = await response.json();
 
         const container = document.getElementById("latest-quizzes-container");
-        container.innerHTML = "MORE QUIZZES";
 
         quizzes.forEach(quiz => {
             const quizDiv = document.createElement("div");
@@ -814,7 +814,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSignupForm();
   } else if (pageMatch("createquiz")) {
     setupCreateQuizPage();
-  } else if (pageMatch("editquestions")) {
+  } else if (pageMatch("questions")) {
     setupQuestionEditor();
   } else if (pageMatch("join")) {
     setupJoinQuizPage();
