@@ -15,29 +15,31 @@ def hash_password(password: str):
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-@router.post("/signup", response_model=schemas.UserResponse)
-def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def create_user(user: schemas.UserCreate, db: Session) -> models.User:
     existing_user = db.query(models.User).filter(models.User.username == user.username).first()
     if existing_user:
-        raise HTTPException(status_code=400, detail="Person already exist with this username")
+        raise HTTPException(status_code=400, detail="Person already exists with this username")
 
     existing_email = db.query(models.User).filter(models.User.email == user.email).first()
     if existing_email:
-        raise HTTPException(status_code=400, detail="Person already exist with this username")
+        raise HTTPException(status_code=400, detail="Person already exists with this email")
 
     hashed_pwd = hash_password(user.password)
-
     new_user = models.User(
         username=user.username,
         email=user.email,
         password=hashed_pwd,
         role=user.role
     )
-
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     return new_user
+
+@router.post("/signup", response_model=schemas.UserResponse)
+def signup(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    return create_user(user, db)
+
 
 @router.post("/login")
 def login(user: schemas.UserLogin, db: Session = Depends(get_db)):

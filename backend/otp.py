@@ -1,35 +1,35 @@
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from pydantic import BaseModel, EmailStr
+import random
 import smtplib
 from email.message import EmailMessage
-import random
-from fastapi import APIRouter, HTTPException, Body
-from pydantic import BaseModel
-from typing import Dict
+from database import get_db
+from schemas import UserCreate
+from auth import create_user  
 
-router = APIRouter()
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-otp_store: Dict[str, str] = {}
 
 SENDER_EMAIL = "arushiojha100@gmail.com"
-APP_PASSWORD = "wlzr pnei jffr ompy"  
+APP_PASSWORD = "your-app-password"
+
+otp_store = {}
 
 class EmailRequest(BaseModel):
-    email: str
+    email: EmailStr
 
-class SignupData(BaseModel):
-    username: str
-    email: str
-    password: str
-    role: str
+class SignupWithOtp(UserCreate):
     otp: str
 
-@router.post("/auth/send-otp")
+@router.post("/send-otp")
 def send_otp(request: EmailRequest):
     otp = str(random.randint(100000, 999999))
     otp_store[request.email] = otp
 
     msg = EmailMessage()
-    msg.set_content(f"Your OTP for QUIZZERIA signup is: {otp}")
-    msg["Subject"] = "QUIZZERIA Signup OTP"
+    msg.set_content(f"Your QUIZZERIA signup OTP is: {otp}")
+    msg["Subject"] = "Your OTP for QUIZZERIA Signup"
     msg["From"] = SENDER_EMAIL
     msg["To"] = request.email
 
@@ -40,14 +40,14 @@ def send_otp(request: EmailRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Email sending failed: {e}")
 
-    return {"detail": "OTP sent successfully"}
+    return {"detail": "OTP sent to email"}
 
-@router.post("/auth/verify-otp-and-signup")
-def verify_otp_and_signup(data: SignupData):
+@router.post("/verify-otp-and-signup")
+def verify_otp_and_signup(data: SignupWithOtp, db: Session = Depends(get_db)):
     stored_otp = otp_store.get(data.email)
-    if not stored_otp or data.otp != stored_otp:
+    if not stored_otp or stored_otp != data.otp:
         raise HTTPException(status_code=400, detail="Invalid or expired OTP")
 
     del otp_store[data.email]
 
-    return {"detail": "Signup successful"}
+    return create_user(data, db)
