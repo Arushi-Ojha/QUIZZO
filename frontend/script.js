@@ -265,27 +265,45 @@ function setupQuestionEditor() {
         return;
     }
     async function loadQuestions() {
-        questionsList.innerHTML = "";
-        try {
-            const response = await fetch(`${BASE_URL}/questions/quiz/${quiz_id}`);
-            const questions = await response.json();
-            questions.forEach(q => {
-                const div = document.createElement("div");
-                div.innerHTML = `
-                    <strong>Q:</strong> ${q.question}<br>
-                    A: ${q.A} | B: ${q.B} | C: ${q.C} | D: ${q.D} <br>
-                    Correct: ${q.correct}
-                    <br>
-                    <button class="edit-btn" data-id="${q.id}">Edit</button>
-                    <button class="delete-btn" data-id="${q.id}">Delete</button>
-                    <hr>
-                `;
-                questionsList.appendChild(div);
-            });
-        } catch (error) {
-            console.error("Error loading questions:", error);
+    questionsList.innerHTML = "";
+    console.log("🧠 quiz_id from localStorage:", quiz_id);
+
+    try {
+        const response = await fetch(`${BASE_URL}/questions/quiz/${quiz_id}`);
+        console.log("🌐 Fetch status:", response.status);
+
+        if (!response.ok) {
+            const err = await response.text();
+            console.error("❌ API Error:", err);
+            return;
         }
+
+        const questions = await response.json();
+        console.log("✅ Questions fetched:", questions);
+
+        if (questions.length === 0) {
+            questionsList.innerHTML = "<p>No questions found.</p>";
+            return;
+        }
+
+        questions.forEach(q => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <strong>Q:</strong> ${q.question}<br>
+                A: ${q.A} | B: ${q.B} | C: ${q.C} | D: ${q.D} <br>
+                Correct: ${q.correct}
+                <br>
+                <button class="edit-btn" data-id="${q.id}">Edit</button>
+                <button class="delete-btn" data-id="${q.id}">Delete</button>
+                <hr>
+            `;
+            questionsList.appendChild(div);
+        });
+    } catch (error) {
+        console.error("💥 Error loading questions:", error);
     }
+}
+
     loadQuestions();
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
