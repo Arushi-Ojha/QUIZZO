@@ -1,47 +1,50 @@
-import google.generativeai as genai
 import os
 import json
+import requests
 from dotenv import load_dotenv
 import time
 
 load_dotenv()
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+HEADERS = {
+    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+    "Content-Type": "application/json",
+    "HTTP-Referer": "https://quizzeria-world.netlify.app/ai",
+    "X-Title": "Quizzeria AI Quiz Generator"
+}
 
 async def generate_quiz_questions(title, description, level):
     prompt = f"""
-    Generate 20 MCQs in JSON format with fields:
-"question", "A", "B", "C", "D", "correct"
+You are an expert quiz maker.
 
-Topic: {title}
-Desc: {description}
-Level: {level}
-Only JSON array.
+Generate exactly 20 multiple-choice questions based on the quiz below.
+
+Quiz Title: {title}
+Description: {description}
+Difficulty Level: {level}
+
+Each question must include:
+- "question": the question text
+- "A", "B", "C", "D": four options
+- "correct": one of "A", "B", "C", or "D"
+
+Output as a valid JSON list of 20 dictionaries with keys: "question", "A", "B", "C", "D", "correct".
     """
 
+    body = {
+        "model": "mistralai/mistral-7b-instruct",  # or "anthropic/claude-3-haiku"
+        "messages": [
+            {"role": "system", "content": "You are an AI quiz generator."},
+            {"role": "user", "content": prompt}
+        ]
+    }
+
     try:
-        model = genai.GenerativeModel(model_name="models/gemini-1.5-pro")
-        response = model.generate_content(prompt)
-
-        # ✅ Properly extract the response content
-        content = response.candidates[0].content.parts[0].text.strip()
-        print("📥 Gemini Raw Output:\n", content)
-
-        # ✅ Safely parse the JSON
-        return json.loads(content)
-
+        res = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=HEADERS, json=body)
+        res.raise_for_status()
+        answer = res.json()["choices"][0]["message"]["content"]
+        return json.loads(answer.strip())
     except Exception as e:
-        # If quota error, wait and retry once
-        if "quota" in str(e).lower():
-            print("❗ Gemini quota exceeded. Retrying after 30 seconds...")
-            time.sleep(31)
-            try:
-                response = model.generate_content(prompt)
-                content = response.candidates[0].content.parts[0].text.strip()
-                print("📥 Gemini Raw Output (retry):\n", content)
-                return json.loads(content)
-            except Exception as inner_e:
-                print("❌ Still failed after retry:", inner_e)
-        else:
-            print("❌ Gemini API Error:", e)
-
-    return []
+        print("❌ OpenRouter API Error:", e)
+        return []

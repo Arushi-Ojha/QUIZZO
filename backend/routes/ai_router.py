@@ -1,14 +1,9 @@
-# routers/ai_route.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
 from models import Quiz, Question, User
-from schemas import QuizCreate
+from schemas import QuizInput
 from ai import generate_quiz_questions
-from uuid import uuid4
-from datetime import datetime
-from schemas import QuizCreate, QuizResponse, QuizInput
-from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -28,8 +23,10 @@ async def generate_quiz(data: QuizInput, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(quiz)
 
-    # AI question generation
     questions = await generate_quiz_questions(data.title, data.description, data.level)
+
+    if not questions:
+        raise HTTPException(status_code=500, detail="Failed to generate questions. Please try again later.")
 
     for q in questions:
         db.add(Question(
@@ -43,4 +40,4 @@ async def generate_quiz(data: QuizInput, db: Session = Depends(get_db)):
         ))
 
     db.commit()
-    return {"message": "Quiz generated successfully", "quiz_id": quiz.id}
+    return {"message": "Quiz and questions generated successfully", "quiz_id": quiz.id}
