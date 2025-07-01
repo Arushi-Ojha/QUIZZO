@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
@@ -7,6 +7,8 @@ from typing import List
 from database import SessionLocal, engine, verify_connection
 import models
 import schemas
+from models import Quiz
+from schemas import QuizResponse
 from auth import router as auth_router
 from routes import ai_router
 from google_auth import router as google_auth_router
@@ -172,6 +174,11 @@ def get_user_role(username: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return {"role": user.role}
 
+@app.get("/search-quizzes/", response_model=List[QuizResponse])
+def search_quizzes(q: str = Query(..., min_length=1), db: Session = Depends(get_db)):
+    return db.query(Quiz).filter(
+        (Quiz.title.ilike(f"%{q}%")) | (Quiz.description.ilike(f"%{q}%"))
+    ).all()
 
 @app.get("/")
 def read_root():
