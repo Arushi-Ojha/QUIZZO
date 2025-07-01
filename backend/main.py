@@ -20,7 +20,7 @@ from routes import questions
 from routes import submissions
 from routes import publicQuizzes
 from google_auth import router as google_auth_router
-from email import router as email_router
+from otp import router as email_router
 
 
 
