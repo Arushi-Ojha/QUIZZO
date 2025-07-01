@@ -5,30 +5,87 @@ const BASE_URL = "https://triumphant-commitment-production.up.railway.app";
 
 
 function setupSignupForm() {
-const form = document.getElementById("signup-form");
-if (!form){
-    
-        return;
-    }
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const username = document.getElementById("signup-username").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-    const role = document.getElementById("signup-role").value;
-    const response = await fetch(`${BASE_URL}/auth/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, role })
+    const form = document.getElementById("signup-form");
+    const sendOtpBtn = document.createElement("button");
+    sendOtpBtn.textContent = "Send OTP";
+    sendOtpBtn.type = "button";
+    sendOtpBtn.style.marginTop = "1rem";
+
+    const otpInput = document.createElement("input");
+    otpInput.type = "text";
+    otpInput.placeholder = "Enter OTP";
+    otpInput.id = "otp-input";
+    otpInput.required = true;
+    otpInput.style.display = "none";
+    otpInput.style.marginTop = "1rem";
+
+    const registerBtn = document.createElement("button");
+    registerBtn.type = "submit";
+    registerBtn.textContent = "Register";
+    registerBtn.style.display = "none";
+    registerBtn.style.marginTop = "1rem";
+
+    form.appendChild(sendOtpBtn);
+    form.appendChild(otpInput);
+    form.appendChild(registerBtn);
+
+    let sentOtp = null;
+
+    sendOtpBtn.addEventListener("click", async () => {
+        const email = document.getElementById("signup-email").value;
+        if (!email) {
+            alert("Please enter an email before sending OTP.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${BASE_URL}/auth/send-otp`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("OTP sent to your email.");
+                otpInput.style.display = "block";
+                registerBtn.style.display = "block";
+                sentOtp = true;
+            } else {
+                alert(`Failed to send OTP: ${data.detail}`);
+            }
+        } catch (error) {
+            alert("Error sending OTP. Try again later.");
+        }
     });
-    const data = await response.json();
-    if (response.ok) {
-        alert("Signup successful! Redirecting you to log in page");
-        window.location.href = "login.html";
-    } else {
-        alert(`Signup failed: ${data.detail}`);
-    }
-});
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = document.getElementById("signup-username").value;
+        const email = document.getElementById("signup-email").value;
+        const password = document.getElementById("signup-password").value;
+        const role = document.getElementById("signup-role").value;
+        const otp = document.getElementById("otp-input").value;
+
+        if (!sentOtp) {
+            alert("Please click 'Send OTP' first.");
+            return;
+        }
+
+        const response = await fetch(`${BASE_URL}/auth/verify-otp-and-signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password, role, otp })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Signup successful! Redirecting you to log in page");
+            window.location.href = "login.html";
+        } else {
+            alert(`Signup failed: ${data.detail}`);
+        }
+    });
 }
 
 
