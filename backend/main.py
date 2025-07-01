@@ -20,6 +20,9 @@ from routes import questions
 from routes import submissions
 from routes import publicQuizzes
 from google_auth import router as google_auth_router
+from email import router as email_router
+
+
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 app = FastAPI()
@@ -59,6 +62,7 @@ app.include_router(leaderboard_router)
 app.include_router(quizzes.router)
 app.include_router(publicQuizzes.router)
 app.include_router(ai_router.router)
+app.include_router(email_router)
 
 def get_db():
     db = SessionLocal()
