@@ -9,23 +9,13 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 async def generate_quiz_questions(title, description, level):
     prompt = f"""
-    Generate 20 multiple-choice questions (MCQs) based on the following quiz details.
+    Generate 20 MCQs in JSON format with fields:
+"question", "A", "B", "C", "D", "correct"
 
-    Title: {title}
-    Description: {description}
-    Difficulty Level: {level}
-
-    Format each question in JSON with the following structure:
-    {{
-      "question": "...",
-      "A": "...",
-      "B": "...",
-      "C": "...",
-      "D": "...",
-      "correct": "A"  // must be one of A, B, C, or D
-    }}
-
-    Return a JSON array of 20 such questions only. No explanation or markdown. Strictly valid JSON.
+Topic: {title}
+Desc: {description}
+Level: {level}
+Only JSON array.
     """
 
     try:
