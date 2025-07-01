@@ -12,7 +12,7 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 
 SENDER_EMAIL = "arushiojha100@gmail.com"
-APP_PASSWORD = "your-app-password"
+APP_PASSWORD = "wlzr pnei jffr ompy"
 
 otp_store = {}
 
