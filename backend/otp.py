@@ -10,7 +10,7 @@ router = APIRouter()
 otp_store: Dict[str, str] = {}
 
 SENDER_EMAIL = "arushiojha100@gmail.com"
-APP_PASSWORD = "GMAIL_APP_PASSWORD"  
+APP_PASSWORD = "wlzr pnei jffr ompy"  
 
 class EmailRequest(BaseModel):
     email: str
